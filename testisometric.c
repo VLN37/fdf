@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bresenhamtest.c                                    :+:      :+:    :+:   */
+/*   isometrictest.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 03:55:09 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/11 23:45:39 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/12 00:35:32 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,21 @@ int *put_line(int *img, int width, int height, int size_line)
 	return (img);
 }
 
+int	iso(int carx, int cary, int mod)
+{
+	int	isox;
+	int	isoy;
+
+	isox = carx + cary;
+	isoy = cary - carx / 2.0;
+
+	carx = (isox - isoy) / 1.5;
+	cary = isox / 3.0 + isoy / 1.5;
+	if (mod == 1)
+		return (isoy);
+	return (isox);
+}
+
 int	main(void)
 {
 	t_img	data;
@@ -119,11 +134,16 @@ int	main(void)
 
 	dump = put_line(dump, 800, 600, data.size_line);
 
-	for (int i = 0; i <= 800; i += 10)
-		drawline(i, 0, 800, 600, dump, data.size_line);
+	// for (int i = 0; i <= 800; i += 10)
+	// 	drawline(i, 0, 800, 600, dump, data.size_line);
 
 	// for (int i = 0; i <= 800; i += 10)
 	// 	plotLine(i, 0, 800, 600, dump, data.size_line);
+
+	int i = 0;
+	int	j = 400;
+	plotLine(i, j, 800, 400, dump, data.size_line);
+	plotLine(iso(i, j, 0), iso(i, j, 1), iso(800, 400, 0), iso(800, 400, 1), dump, data.size_line);
 
 	data.win_ptr = mlx_new_window(data.mlx_ptr, WIDTH, HEIGHT, "hello world!");
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.win_img, 0, 0);
