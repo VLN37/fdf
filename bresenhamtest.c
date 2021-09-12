@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 03:55:09 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/11 23:36:21 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/11 23:45:39 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,12 @@ int	main(void)
 
 	dump = (int *)mlx_get_data_addr(data.win_img, \
 	&data.bbp, &data.size_line, &data.end);
+
 	dump = put_line(dump, 800, 600, data.size_line);
 
-	drawline(0, 0, 800, 600, dump, data.size_line);
+	for (int i = 0; i <= 800; i += 10)
+		drawline(i, 0, 800, 600, dump, data.size_line);
+
 	// for (int i = 0; i <= 800; i += 10)
 	// 	plotLine(i, 0, 800, 600, dump, data.size_line);
 

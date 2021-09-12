@@ -15,5 +15,3 @@ fclean:
 
 makelibft:
 	make all -C ./libft
-
-
