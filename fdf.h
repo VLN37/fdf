@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 01:58:02 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/11 01:58:02 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/11 02:44:05 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 
 # define WIDTH 800
 # define HEIGHT 600
-# define OFFSET 80
-# define INCREMENT 5
+# define OFFSET 120
+# define INCREMENT 20
 
 typedef struct s_img
 {

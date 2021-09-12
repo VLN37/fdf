@@ -6,11 +6,10 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 01:29:24 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/11 01:07:32 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/11 22:15:02 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "fdf.h"
 #include "mlx.h"
 
@@ -72,21 +71,32 @@ int	main(void)
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.win_img, 0, 0);
 	mlx_loop(data.mlx_ptr);
 }
-	// y = 32000;
-	// while (y < 32800)
-	// {
-	// 	dump[y] = 0xFFFFFF;
-	// 	y++;
-	// }
-	// y = 64000;
-	// while (y < 64800)
-	// {
-	// 	dump[y] = 0xFFFFFF;
-	// 	y++;
-	// }
-	// y = 96000;
-	// while (y < 96800)
-	// {
-	// 	dump[y] = 0xFFFFFF;
-	// 	y++;
-	// }
+
+// void drawline(int x0, int y0, int x1, int y1)
+// {
+// 	int dx, dy, p, x, y;
+
+// 	dx=x1-x0;
+// 	dy=y1-y0;
+
+// 	x=x0;
+// 	y=y0;
+
+// 	p=2*dy-dx;
+
+// 	while(x<x1)
+// 	{
+// 	if(p>=0)
+// 	{
+// 		putpixel(x,y,7);
+// 		y=y+1;
+// 		p=p+2*dy-2*dx;
+// 	}
+// 	else
+// 	{
+// 		putpixel(x,y,7);
+// 		p=p+2*dy;
+// 	}
+// 	x=x+1;
+// 	}
+// }
