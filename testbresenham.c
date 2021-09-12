@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bresenhamtest.c                                    :+:      :+:    :+:   */
+/*   testbresenham.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 03:55:09 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/11 23:51:31 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/12 05:17:02 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "fdf.h"
 #include "mlx.h"
 
-void drawline(int x0, int y0, int x1, int y1, int *dump, int size_line)
+void	drawline(int x0, int y0, int x1, int y1, int *dump, int size_line)
 {
 	int dx, dy, p, x, y;
 
@@ -43,11 +43,11 @@ void drawline(int x0, int y0, int x1, int y1, int *dump, int size_line)
 	}
 }
 
-void plotLine(int x0, int y0, int x1, int y1, int *dump, int size_line)
+void	plotLine(int x0, int y0, int x1, int y1, int *dump, int size_line)
 {
 	int	dx, sx, dy, sy, err, e2;
 
-	dx =  abs(x1 - x0);
+	dx = abs(x1 - x0);
 	sx = x0 < x1 ? 1 : -1;
 	dy = -abs(y1 - y0);
 	sy = y0 < y1 ? 1 : -1;
@@ -87,8 +87,7 @@ void plotLine(int x0, int y0, int x1, int y1, int *dump, int size_line)
 //     *y = -z + (previous_x + previous_y) * sin(0.523599);
 // }
 
-
-int *put_line(int *img, int width, int height, int size_line)
+int	*put_line(int *img, int width, int height, int size_line)
 {
 	int	col;
 	int	line;
