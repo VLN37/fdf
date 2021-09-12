@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   testreadmap.c                                      :+:      :+:    :+:   */
+/*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 00:37:53 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/12 05:21:08 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/12 09:34:40 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "mlx.h"
 
-int	file_line_size(char *file)
+static int	file_line_size(char *file)
 {
 	int		i;
 	int		j;
@@ -22,6 +22,7 @@ int	file_line_size(char *file)
 
 	fd = open(file, O_RDONLY);
 	str = get_next_line(fd);
+	// close(fd);
 	i = 0;
 	j = 0;
 	while (str[j])
@@ -45,7 +46,7 @@ int	file_line_size(char *file)
 	return (i);
 }
 
-int	file_line_count(char *file)
+static int	file_line_count(char *file)
 {
 	int		fd;
 	char	*str;
@@ -65,7 +66,7 @@ int	file_line_count(char *file)
 	return (res);
 }
 
-int	*string_to_intarr(char *str, int *line)
+static int	*string_to_intarr(char *str, int *line)
 {
 	int	i;
 
@@ -79,9 +80,6 @@ int	*string_to_intarr(char *str, int *line)
 		if (*str)
 			str++;
 	}
-	for (int i = 0; i < 19; i++)
-		printf("%3d", line[i]);
-	printf("\n");
 	return (line);
 }
 
@@ -125,6 +123,14 @@ int	main(int argc, char **argv)
 
 	int	i = 0;
 	int	j = 0;
+	while (map[i])
+	{
+		while(j < map_data.line_len)
+			printf("%3d", map[i][j++]);
+		i++;
+		j = 0;
+		printf("\n");
+	}
 	while (i < map_data.lines)
 		free(map[i++]);
 	free(map);
