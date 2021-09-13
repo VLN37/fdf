@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 01:58:02 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/12 12:00:22 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/13 01:08:08 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define OFFSET 120
+# define OFFSET 100
 # define INCREMENT 20
 
 typedef struct s_img
@@ -37,6 +37,16 @@ typedef struct s_img
 	int		size_line;
 	int		end;
 }	t_img;
+
+typedef struct s_coord
+{
+	int	x0;
+	int	y0;
+	int	x1;
+	int	y1;
+	int	z0;
+	int	z1;
+}	t_coord;
 
 typedef struct s_map_data
 {

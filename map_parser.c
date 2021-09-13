@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 00:37:53 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/12 09:34:40 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/12 23:39:46 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int **parse_map(char *file, t_data *map_data)
 	str = "init";
 	map_data->lines = file_line_count(file);
 	map_data->line_len = file_line_size(file);
+
 	map = (int **)malloc(sizeof(int *) * map_data->lines);
 	fd = open(file, O_RDONLY);
 	while (str)
@@ -111,27 +112,27 @@ int **parse_map(char *file, t_data *map_data)
 	return (map);
 }
 
-int	main(int argc, char **argv)
-{
-	int		fd;
-	int		**map;
-	t_data	map_data;
+// int	main(int argc, char **argv)
+// {
+// 	int		fd;
+// 	int		**map;
+// 	t_data	map_data;
 
-	if (argc != 2)
-		printf("expected usage: ./a.out (filename)\n");
-	map = parse_map(argv[1], &map_data);
+// 	if (argc != 2)
+// 		printf("expected usage: ./a.out (filename)\n");
+// 	map = parse_map(argv[1], &map_data);
 
-	int	i = 0;
-	int	j = 0;
-	while (map[i])
-	{
-		while(j < map_data.line_len)
-			printf("%3d", map[i][j++]);
-		i++;
-		j = 0;
-		printf("\n");
-	}
-	while (i < map_data.lines)
-		free(map[i++]);
-	free(map);
-}
+// 	int	i = 0;
+// 	int	j = 0;
+// 	while (map[i])
+// 	{
+// 		while(j < map_data.line_len)
+// 			printf("%3d", map[i][j++]);
+// 		i++;
+// 		j = 0;
+// 		printf("\n");
+// 	}
+// 	while (i < map_data.lines)
+// 		free(map[i++]);
+// 	free(map);
+// }
