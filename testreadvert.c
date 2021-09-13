@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   testreadmap.c                                      :+:      :+:    :+:   */
+/*   testreadvert.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 22:36:05 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/13 03:00:14 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/13 09:21:31 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,27 @@ t_coord	get_coord_horizontal(t_coord coord, int **map, int x, int y)
 	// coord.z1 = map[x][y + 1];
 	coord.z0 = map[x][y];
 	coord.z1 = map[x][y + 1];
-	coord.y0 = ((-coord.z0) + (x * INCREMENT + OFFSET));
+	coord.y0 = ((-map[x][y]) + (x * INCREMENT + OFFSET));
 	coord.x0 = (y * INCREMENT + OFFSET);
-	coord.y1 = ((-coord.z1) + (x * INCREMENT + OFFSET));
+	coord.y1 = ((-map[x][y + 1]) + (x * INCREMENT + OFFSET));
 	coord.x1 =  (y * INCREMENT + INCREMENT + OFFSET);
 
 	return(coord);
 }
 
+t_coord	get_coord_vertical(t_coord coord, int **map, int x, int y)
+{
+	//coord.z0 = coord.z1 - map[x][y];
+	//coord.z1 = map[x][y + 1];
+	coord.z0 = map[x][y];
+	coord.z1 = map[x + 1][y];
+	coord.y0 = ((-map[x][y + 1]) + (x * INCREMENT + OFFSET));
+	coord.x0 = ((-coord.z0) + (y * INCREMENT + OFFSET));
+	coord.y1 = (((-map[x + 1][y + 1]) + x * INCREMENT + INCREMENT + OFFSET));
+	coord.x1 =  ((-coord.z1) + (y * INCREMENT + OFFSET));
+
+	return(coord);
+}
 
 int	*plot_map_horizontal(int *dump, int **map, int	size_line, int line_len)
 {
@@ -104,6 +117,20 @@ int	*plot_map_horizontal(int *dump, int **map, int	size_line, int line_len)
 		y = 0;
 	}
 
+	x = 0;
+	y = 0;
+	// while (x < 10)
+	// {
+	// 	while (y < line_len)
+	// 	{
+	// 		coord = get_coord_vertical(coord, map, x, y);
+	// 		//coord = iso(coord);
+	// 		plotLine(coord.x0, coord.y0 + 300, coord.x1, coord.y1 + 300, dump, size_line);
+	// 		y++;
+	// 	}
+	// 	x++;
+	// 	y = 0;
+	// }
 	return (dump);
 }
 

@@ -1,8 +1,10 @@
 LIBFT	= make -C ./libft all
 LINKS	= -L./libft -I./libft -lft -L./minilibx -I./minilibx -lmlx -lX11 -lXext
 
-proto: makelibft
-	clang testreadmap.c map_parser.c $(LINKS)
+vert: makelibft
+
+horiz: makelibft
+	clang testreadmap.c map_parser.c $(LINKS) && ./a.out 42.fdf
 
 grid: makelibft
 	gcc testgrid.c $(LINKS)
