@@ -1,5 +1,6 @@
 LIBFT	= make -C ./libft all
 LINKS	= -L./libft -I./libft -lft -L./minilibx -I./minilibx -lmlx -lX11 -lXext
+SANIT	= -fsanitize=address -g3
 
 vert: makelibft
 
@@ -13,7 +14,7 @@ bresenham: makelibft
 	gcc testbresenham.c $(LINKS)
 
 parser: makelibft
-	clang map_parser.c -I ./libft -L./libft -lft && ./a.out elem2.fdf
+	clang map_parser.c map_parser_main.c -I ./libft -L./libft -lft && ./a.out 42.fdf
 
 iso: makelibft
 	gcc testisometric.c $(LINKS)

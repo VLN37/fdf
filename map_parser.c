@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 00:37:53 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/12 23:39:46 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/14 03:25:13 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,27 +112,3 @@ int **parse_map(char *file, t_data *map_data)
 	return (map);
 }
 
-// int	main(int argc, char **argv)
-// {
-// 	int		fd;
-// 	int		**map;
-// 	t_data	map_data;
-
-// 	if (argc != 2)
-// 		printf("expected usage: ./a.out (filename)\n");
-// 	map = parse_map(argv[1], &map_data);
-
-// 	int	i = 0;
-// 	int	j = 0;
-// 	while (map[i])
-// 	{
-// 		while(j < map_data.line_len)
-// 			printf("%3d", map[i][j++]);
-// 		i++;
-// 		j = 0;
-// 		printf("\n");
-// 	}
-// 	while (i < map_data.lines)
-// 		free(map[i++]);
-// 	free(map);
-// }

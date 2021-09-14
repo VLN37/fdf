@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 01:58:02 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/14 02:17:44 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/14 02:25:58 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 1800
+# define HEIGHT 900
 # define OFFSET 100
 # define INCREMENT 30
 

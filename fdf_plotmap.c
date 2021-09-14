@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   testreadvert.c                                     :+:      :+:    :+:   */
+/*   fdf_plotmap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 22:36:05 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/14 02:50:36 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/14 03:21:35 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ t_coord	get_coord_vertical(t_coord coord, int **map, int x, int y)
 	return(coord);
 }
 
-int	*plot_map_horizontal(int *dump, int **map, int	size_line, int line_len)
+int	*plot_map_horizontal(int *dump, int **map, int	size_line, t_data map_data)
 {
 	int	x;
 	int	y;
@@ -104,9 +104,9 @@ int	*plot_map_horizontal(int *dump, int **map, int	size_line, int line_len)
 	coord.z1 = 0;
 	x = 0;
 	y = 0;
-	while (x < 11)
+	while (x < map_data.lines - 2)
 	{
-		while (y < line_len)
+		while (y < map_data.line_len)
 		{
 			coord = get_coord_horizontal(coord, map, x, y);
 			coord = iso(coord);
@@ -116,12 +116,23 @@ int	*plot_map_horizontal(int *dump, int **map, int	size_line, int line_len)
 		x++;
 		y = 0;
 	}
+	return (dump);
+}
 
+int	*plot_map_vertical(int *dump, int **map, int size_line, t_data map_data)
+{
+	int	x;
+	int	y;
+	t_coord coord;
+
+	coord.z0 = 0;
+	coord.z1 = 0;
 	x = 0;
 	y = 0;
-	while (x < 10)
+
+	while (x < map_data.lines - 2)
 	{
-		while (y <= line_len)
+		while (y < map_data.line_len)
 		{
 			coord = get_coord_vertical(coord, map, x, y);
 			coord = iso(coord);
@@ -150,8 +161,9 @@ int	main(int argc, char **argv)
 	dump = (int *)mlx_get_data_addr(img.win_img, \
 	&img.bbp, &img.size_line, &img.end);
 
-	dump = plot_map_horizontal(dump, map, img.size_line, map_data.line_len);
-
+	printf("%d %d\n", map_data.lines, map_data.line_len);
+	dump = plot_map_horizontal(dump, map, img.size_line, map_data);
+	dump = plot_map_vertical(dump, map, img.size_line, map_data);
 
 	img.win_ptr = mlx_new_window(img.mlx_ptr, WIDTH, HEIGHT, "hello world!");
 	mlx_put_image_to_window(img.mlx_ptr, img.win_ptr, img.win_img, 0, 0);
