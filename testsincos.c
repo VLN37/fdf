@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   testreadvert.c                                     :+:      :+:    :+:   */
+/*   testsincos.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 22:36:05 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/14 01:56:40 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/13 13:09:30 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "fdf.h"
+#include <math.h>
 
 void	plotLine(int x0, int y0, int x1, int y1, int *dump, int size_line)
 {
@@ -52,10 +53,10 @@ t_coord	iso(t_coord coord)
 	int	isox1;
 	int	isoy1;
 
-	isox0 = coord.x0 - coord.y0;
-	isoy0 = (coord.x0 + coord.y0) / 2.0;
-	isox1 = coord.x1 - coord.y1;
-	isoy1 = (coord.x1 + coord.y1) / 2.0;
+	isox0 = (int)round(coord.x0 - coord.y0 * cos(1.0471975512));
+	isoy0 = (int)round((coord.x0 + coord.y0) * sin(1.0471975512) - coord.z0);
+	isox1 = (int)round(coord.x1 - coord.y1 * cos(1.0471975512));
+	isoy1 = (int)round((coord.x1 + coord.y1) * sin(1.0471975512) - coord.z1);
 
 	coord.x0 = isox0;
 	coord.y0 = isoy0;
@@ -72,10 +73,10 @@ t_coord	get_coord_horizontal(t_coord coord, int **map, int x, int y)
 	// coord.z1 = map[x][y + 1];
 	// coord.z0 = map[x][y];
 	// coord.z1 = map[x][y + 1];
-	coord.y0 = ((-map[x][y]) + (x * INCREMENT + OFFSET));
-	coord.x0 = ((-map[x][y]) + (y * INCREMENT + OFFSET));
-	coord.y1 = ((-map[x][y + 1]) + (x * INCREMENT + OFFSET));
-	coord.x1 = ((-map[x][y + 1]) + (y * INCREMENT + INCREMENT + OFFSET));
+	coord.y0 = ( + (x * INCREMENT + OFFSET));
+	coord.x0 = (y * INCREMENT + OFFSET);
+	coord.y1 = ( + (x * INCREMENT + OFFSET));
+	coord.x1 =  (y * INCREMENT + INCREMENT + OFFSET);
 
 	return(coord);
 }
@@ -86,10 +87,10 @@ t_coord	get_coord_vertical(t_coord coord, int **map, int x, int y)
 	//coord.z1 = map[x][y + 1];
 	// coord.z0 = map[x][y];
 	// coord.z1 = map[x + 1][y];
-	coord.y0 = ((-map[x][y]) + (x * INCREMENT + OFFSET));
-	coord.x0 = ((-map[x][y]) + (y * INCREMENT + OFFSET));
-	coord.y1 = ((-map[x + 1][y]) + (x * INCREMENT + INCREMENT + OFFSET));
-	coord.x1 = ((-map[x + 1][y]) + (y * INCREMENT + OFFSET));
+	coord.y0 = ( + (x * INCREMENT + OFFSET));
+	coord.x0 = ( + (y * INCREMENT + OFFSET));
+	coord.y1 = ( + (x * INCREMENT + INCREMENT + OFFSET));
+	coord.x1 =  ( + (y * INCREMENT + OFFSET));
 
 	return(coord);
 }
@@ -109,8 +110,8 @@ int	*plot_map_horizontal(int *dump, int **map, int	size_line, int line_len)
 		while (y < line_len)
 		{
 			coord = get_coord_horizontal(coord, map, x, y);
-			 coord = iso(coord);
-			plotLine(coord.x0 + 150, coord.y0 + 300, coord.x1 + 150, coord.y1 + 300, dump, size_line);
+			// coord = iso(coord);
+			plotLine(coord.x0 , coord.y0 + 300, coord.x1 , coord.y1 + 300, dump, size_line);
 			y++;
 		}
 		x++;
@@ -124,8 +125,8 @@ int	*plot_map_horizontal(int *dump, int **map, int	size_line, int line_len)
 		while (y < line_len)
 		{
 			coord = get_coord_vertical(coord, map, x, y);
-			 coord = iso(coord);
-			plotLine(coord.x0 + 150, coord.y0 + 300, coord.x1 + 150, coord.y1 + 300, dump, size_line);
+			// coord = iso(coord);
+			plotLine(coord.x0 , coord.y0 + 300, coord.x1 , coord.y1 + 300, dump, size_line);
 			y++;
 		}
 		x++;
