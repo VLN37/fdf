@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 00:37:53 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/14 05:17:46 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/14 05:35:35 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,19 +89,17 @@ void set_scale(t_data *map_data, int **map)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = 1;
 	j = 0;
-	while (map[i][j])
-		j++;
-	if (WIDTH / j < 30)
-		map_data->scale = WIDTH / j;
+	if (WIDTH / map_data->line_len < 30)
+		map_data->scale = WIDTH / map_data->line_len / 2;
 	else
 		map_data->scale = 30;
-	j = 0;
+	printf("%d\n", map_data->scale);
 	map_data->max_height = 0;
-	while (map[i])
+	while (i < map_data->lines - 1)
 	{
-		while(j <  map_data->line_len + 1)
+		while(j < map_data->line_len - 1)
 		{
 			if (map[i][j] > map_data->max_height)
 				map_data->max_height = map[i][j];
@@ -138,6 +136,7 @@ int **parse_map(char *file, t_data *map_data)
 		}
 	}
 	printf("%d\n", i);
+	set_scale(map_data, map);
 	// map[i] = (int *)malloc(sizeof(int) *( map_data->line_len + 1));
 	// ft_bzero((void *)map[i++], (map_data->line_len) * sizeof(int));
 	map[i] = NULL;

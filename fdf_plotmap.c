@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 22:36:05 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/14 04:20:27 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/14 05:24:28 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,30 +66,30 @@ t_coord	iso(t_coord coord)
 	return (coord);
 }
 
-t_coord	get_coord_horizontal(t_coord coord, int **map, int x, int y)
+t_coord	get_coord_horizontal(t_coord coord, int **map, int x, int y, int scale)
 {
 	// coord.z0 = coord.z1 - map[x][y];
 	// coord.z1 = map[x][y + 1];
 	// coord.z0 = map[x][y];
 	// coord.z1 = map[x][y + 1];
-	coord.y0 = ((-map[x][y]) + (x * INCREMENT + OFFSET));
-	coord.x0 = ((-map[x][y]) + (y * INCREMENT + OFFSET));
-	coord.y1 = ((-map[x][y + 1]) + (x * INCREMENT + OFFSET));
-	coord.x1 = ((-map[x][y + 1]) + (y * INCREMENT + INCREMENT + OFFSET));
+	coord.y0 = ((-map[x][y]) + (x * scale + OFFSET));
+	coord.x0 = ((-map[x][y]) + (y * scale + OFFSET));
+	coord.y1 = ((-map[x][y + 1]) + (x * scale + OFFSET));
+	coord.x1 = ((-map[x][y + 1]) + (y * scale + scale + OFFSET));
 
 	return(coord);
 }
 
-t_coord	get_coord_vertical(t_coord coord, int **map, int x, int y)
+t_coord	get_coord_vertical(t_coord coord, int **map, int x, int y, int scale)
 {
 	//coord.z0 = coord.z1 - map[x][y];
 	//coord.z1 = map[x][y + 1];
 	// coord.z0 = map[x][y];
 	// coord.z1 = map[x + 1][y];
-	coord.y0 = ((-map[x][y]) + (x * INCREMENT + OFFSET));
-	coord.x0 = ((-map[x][y]) + (y * INCREMENT + OFFSET));
-	coord.y1 = ((-map[x + 1][y]) + (x * INCREMENT + INCREMENT + OFFSET));
-	coord.x1 = ((-map[x + 1][y]) + (y * INCREMENT + OFFSET));
+	coord.y0 = ((-map[x][y]) + (x * scale + OFFSET));
+	coord.x0 = ((-map[x][y]) + (y * scale + OFFSET));
+	coord.y1 = ((-map[x + 1][y]) + (x * scale + scale + OFFSET));
+	coord.x1 = ((-map[x + 1][y]) + (y * scale + OFFSET));
 
 	return(coord);
 }
@@ -100,6 +100,7 @@ int	*plot_map_horizontal(int *dump, int **map, int	size_line, t_data map_data)
 	int	y;
 	t_coord coord;
 
+	printf("%d\n", map_data.scale);
 	coord.z0 = 0;
 	coord.z1 = 0;
 	x = 0;
@@ -108,7 +109,7 @@ int	*plot_map_horizontal(int *dump, int **map, int	size_line, t_data map_data)
 	{
 		while (y < map_data.line_len - 1)
 		{
-			coord = get_coord_horizontal(coord, map, x, y);
+			coord = get_coord_horizontal(coord, map, x, y, map_data.scale);
 			coord = iso(coord);
 			plotLine(coord.x0 + 400, coord.y0 + 200, coord.x1 + 400, coord.y1 + 200, dump, size_line);
 			y++;
@@ -134,7 +135,7 @@ int	*plot_map_vertical(int *dump, int **map, int size_line, t_data map_data)
 	{
 		while (y < map_data.line_len)
 		{
-			coord = get_coord_vertical(coord, map, x, y);
+			coord = get_coord_vertical(coord, map, x, y, map_data.scale);
 			coord = iso(coord);
 			plotLine(coord.x0 + 400, coord.y0 + 200, coord.x1 + 400, coord.y1 + 200, dump, size_line);
 			y++;
