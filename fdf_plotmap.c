@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 22:36:05 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/14 03:21:35 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/14 04:20:27 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	plotLine(int x0, int y0, int x1, int y1, int *dump, int size_line)
 		if (e2 >= dy)
 		{
 			err += dy;
-			if (x0 < WIDTH && y0 < HEIGHT && (x0 + (y0 * size_line / 4) >= 0))
+			if (x0 < WIDTH && y0 < HEIGHT )
 				dump[x0 + (y0 * size_line / 4)] = 0xFFFFFF;
 			x0 += sx;
 		}
 		if (e2 <= dx)
 		{
 			err += dx;
-			if (x0 < WIDTH && y0 < HEIGHT && (x0 + (y0 * size_line / 4) > 0))
+			if (x0 < WIDTH && y0 < HEIGHT )
 				dump[x0 + (y0 * size_line / 4)] = 0xFFFFFF;
 			y0 += sy;
 		}
@@ -104,9 +104,9 @@ int	*plot_map_horizontal(int *dump, int **map, int	size_line, t_data map_data)
 	coord.z1 = 0;
 	x = 0;
 	y = 0;
-	while (x < map_data.lines - 2)
+	while (x < map_data.lines - 1)
 	{
-		while (y < map_data.line_len)
+		while (y < map_data.line_len - 1)
 		{
 			coord = get_coord_horizontal(coord, map, x, y);
 			coord = iso(coord);
