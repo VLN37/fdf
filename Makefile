@@ -3,7 +3,7 @@ LINKS	= -L./libft -I./libft -lft -L./minilibx -I./minilibx -lmlx -lX11 -lXext
 SANIT	= -fsanitize=address -g3
 
 fdf: makelibft
-	gcc fdf_plotmap.c fdf_map_parser.c $(LINKS) && ./a.out 42.fdf
+	clang fdf_plotmap.c fdf_map_parser.c $(LINKS) && ./a.out 42.fdf
 
 fdfsanit: makelibft
 	clang fdf_plotmap.c fdf_map_parser.c $(SANIT) $(LINKS) -lm && ./a.out 42.fdf

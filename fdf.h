@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 01:58:02 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/14 02:25:58 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/14 04:51:04 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct s_map_data
 {
 	int	lines;
 	int	line_len;
+	int	scale;
+	int	max_height;
 }	t_data;
 
 int **parse_map(char *file, t_data *map_data);

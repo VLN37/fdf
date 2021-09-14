@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parser.c                                       :+:      :+:    :+:   */
+/*   fdf_map_parser.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 00:37:53 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/14 03:58:45 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/14 05:17:46 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,36 @@ static int	*string_to_intarr(char *str, int *line)
 		if (*str)
 			str++;
 	}
-	line[i] = 0;
+	//line[i] = 0;
 	return (line);
+}
+
+void set_scale(t_data *map_data, int **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (map[i][j])
+		j++;
+	if (WIDTH / j < 30)
+		map_data->scale = WIDTH / j;
+	else
+		map_data->scale = 30;
+	j = 0;
+	map_data->max_height = 0;
+	while (map[i])
+	{
+		while(j <  map_data->line_len + 1)
+		{
+			if (map[i][j] > map_data->max_height)
+				map_data->max_height = map[i][j];
+			++j;
+		}
+		j = 0;
+		i++;
+	}
 }
 
 int **parse_map(char *file, t_data *map_data)
@@ -96,14 +124,14 @@ int **parse_map(char *file, t_data *map_data)
 	map_data->lines = file_line_count(file);
 	map_data->line_len = file_line_size(file);
 
-	map = (int **)malloc(sizeof(int *) * (map_data->lines + 1));
+	map = (int **)malloc(sizeof(int *) * (map_data->lines));
 	fd = open(file, O_RDONLY);
 	while (str)
 	{
 		str = get_next_line(fd);
 		if (str)
 		{
-			map[i] = (int *)malloc(sizeof(int) *( map_data->line_len + 1));
+			map[i] = (int *)malloc(sizeof(int) *( map_data->line_len));
 			string_to_intarr(str, map[i]);
 			free (str);
 			i++;
