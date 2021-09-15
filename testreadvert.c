@@ -6,14 +6,14 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 22:36:05 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/14 02:50:36 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/15 04:04:47 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "fdf.h"
 
-void	plotLine(int x0, int y0, int x1, int y1, int *dump, int size_line)
+void	bresenham(int x0, int y0, int x1, int y1, int *dump, int size_line)
 {
 	int	dx, sx, dy, sy, err, e2;
 
@@ -110,7 +110,7 @@ int	*plot_map_horizontal(int *dump, int **map, int	size_line, int line_len)
 		{
 			coord = get_coord_horizontal(coord, map, x, y);
 			coord = iso(coord);
-			plotLine(coord.x0 + 400, coord.y0 + 200, coord.x1 + 400, coord.y1 + 200, dump, size_line);
+			bresenham(coord.x0 + 400, coord.y0 + 200, coord.x1 + 400, coord.y1 + 200, dump, size_line);
 			y++;
 		}
 		x++;
@@ -125,7 +125,7 @@ int	*plot_map_horizontal(int *dump, int **map, int	size_line, int line_len)
 		{
 			coord = get_coord_vertical(coord, map, x, y);
 			coord = iso(coord);
-			plotLine(coord.x0 + 400, coord.y0 + 200, coord.x1 + 400, coord.y1 + 200, dump, size_line);
+			bresenham(coord.x0 + 400, coord.y0 + 200, coord.x1 + 400, coord.y1 + 200, dump, size_line);
 			y++;
 		}
 		x++;

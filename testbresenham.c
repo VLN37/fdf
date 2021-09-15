@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 03:55:09 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/12 08:46:37 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/15 04:04:47 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	drawline(int x0, int y0, int x1, int y1, int *dump, int size_line)
 	}
 }
 
-void	plotLine(int x0, int y0, int x1, int y1, int *dump, int size_line)
+void	bresenham(int x0, int y0, int x1, int y1, int *dump, int size_line)
 {
 	int	dx, sx, dy, sy, err, e2;
 
@@ -122,7 +122,7 @@ int	main(void)
 	// 	drawline(i, 0, 800, 600, dump, data.size_line);
 
 	for (int i = 0; i <= 800; i += 10)
-		plotLine(i, 0, 800, 600, dump, data.size_line);
+		bresenham(i, 0, 800, 600, dump, data.size_line);
 
 	data.win_ptr = mlx_new_window(data.mlx_ptr, WIDTH, HEIGHT, "hello world!");
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.win_img, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 03:55:09 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/12 22:24:08 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/15 04:04:47 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	drawline(int x0, int y0, int x1, int y1, int *dump, int size_line)
 	}
 }
 
-void	plotLine(int x0, int y0, int x1, int y1, int *dump, int size_line)
+void	bresenham(int x0, int y0, int x1, int y1, int *dump, int size_line)
 {
 	int	dx, sx, dy, sy, err, e2;
 
@@ -124,40 +124,40 @@ int	main(void)
 	// 	drawline(i, 0, 800, 600, dump, data.size_line);
 
 	// for (int i = 0; i <= 800; i += 10)
-	// 	plotLine(i, 0, 800, 600, dump, data.size_line);
+	// 	bresenham(i, 0, 800, 600, dump, data.size_line);
 
-	//plotLine(100, 0, 100, 1080, dump, data.size_line);
+	//bresenham(100, 0, 100, 1080, dump, data.size_line);
 	for (int z = 0; z < 500; z += INCREMENT)
 	{
 		int	i = 100 + z;
 		int	j = 100 + z;
 		int	k = 200 + z;
 		int	y = 100 + z;
-		plotLine(i, j, k, y, dump, data.size_line);
-		plotLine(iso(i, j, 0), iso(i, j, 1), iso(k, y, 0), iso(k, y, 1), dump, data.size_line);
+		bresenham(i, j, k, y, dump, data.size_line);
+		bresenham(iso(i, j, 0), iso(i, j, 1), iso(k, y, 0), iso(k, y, 1), dump, data.size_line);
 
 		i = 200 + z;
 		j = 200 + z;
 		k = 200 + z;
 		y = 100 + z;
-		plotLine(i, j, k, y, dump, data.size_line);
-		plotLine(iso(i, j, 0), iso(i, j, 1), iso(k, y, 0), iso(k, y, 1), dump, data.size_line);
+		bresenham(i, j, k, y, dump, data.size_line);
+		bresenham(iso(i, j, 0), iso(i, j, 1), iso(k, y, 0), iso(k, y, 1), dump, data.size_line);
 
 		i = 100 + z;
 		j = 100 + z;
 		k = 100 + z;
 		y = 200 + z;
-		plotLine(i, j, k, y, dump, data.size_line);
-		plotLine(iso(i, j, 0), iso(i, j, 1), iso(k, y, 0), iso(k, y, 1), dump, data.size_line);
+		bresenham(i, j, k, y, dump, data.size_line);
+		bresenham(iso(i, j, 0), iso(i, j, 1), iso(k, y, 0), iso(k, y, 1), dump, data.size_line);
 
 		i = 200 + z;
 		j = 200 + z;
 		k = 100 + z;
 		y = 200 + z;
-		plotLine(i, j, k, y, dump, data.size_line);
-		plotLine(iso(i, j, 0), iso(i, j, 1), iso(k, y, 0), iso(k, y, 1), dump, data.size_line);
+		bresenham(i, j, k, y, dump, data.size_line);
+		bresenham(iso(i, j, 0), iso(i, j, 1), iso(k, y, 0), iso(k, y, 1), dump, data.size_line);
 	}
-	//plotLine(400, 100, 600, 300, dump, data.size_line);
+	//bresenham(400, 100, 600, 300, dump, data.size_line);
 
 	data.win_ptr = mlx_new_window(data.mlx_ptr, WIDTH, HEIGHT, "hello world!");
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.win_img, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 00:37:53 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/14 05:35:35 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/14 08:02:19 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,6 @@ int **parse_map(char *file, t_data *map_data)
 			i++;
 		}
 	}
-	printf("%d\n", i);
 	set_scale(map_data, map);
 	// map[i] = (int *)malloc(sizeof(int) *( map_data->line_len + 1));
 	// ft_bzero((void *)map[i++], (map_data->line_len) * sizeof(int));
