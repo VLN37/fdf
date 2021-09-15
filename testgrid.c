@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 01:29:24 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/12 00:36:21 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/15 05:09:14 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,19 @@ int	*put_vertical_line(int *img, int width, int height, int size_line)
 
 int	main(void)
 {
-	t_img	data;
-	int		*dump;
-	int		y;
+	t_img	img;
 
-	data.mlx_ptr = mlx_init();
-	if (!data.mlx_ptr)
+	img.mlx_ptr = mlx_init();
+	if (!img.mlx_ptr)
 		return (1);
-	data.win_img = mlx_new_image(data.mlx_ptr, WIDTH, HEIGHT);
-	dump = (int *)mlx_get_data_addr(data.win_img, \
-	&data.bbp, &data.size_line, &data.end);
-	dump = put_horizontal_line(dump, WIDTH, HEIGHT, data.size_line);
-	dump = put_vertical_line(dump, WIDTH, HEIGHT, data.size_line);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WIDTH, HEIGHT, "hello world!");
-	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.win_img, 0, 0);
-	mlx_loop(data.mlx_ptr);
+	img.win_img = mlx_new_image(img.mlx_ptr, WIDTH, HEIGHT);
+	img.dump = (int *)mlx_get_data_addr(img.win_img, \
+	&img.bbp, &img.size_line, &img.end);
+	img.dump = put_horizontal_line(img.dump, WIDTH, HEIGHT, img.size_line);
+	img.dump = put_vertical_line(img.dump, WIDTH, HEIGHT, img.size_line);
+	img.win_ptr = mlx_new_window(img.mlx_ptr, WIDTH, HEIGHT, "hello world!");
+	mlx_put_image_to_window(img.mlx_ptr, img.win_ptr, img.win_img, 0, 0);
+	mlx_loop(img.mlx_ptr);
 }
 
 // void drawline(int x0, int y0, int x1, int y1)

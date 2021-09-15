@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 22:36:05 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/15 04:04:47 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/15 05:07:49 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,20 +137,18 @@ int	*plot_map_horizontal(int *dump, int **map, int	size_line, int line_len)
 int	main(int argc, char **argv)
 {
 	t_img	img;
-	t_data	map_data;
-	int		**map;
-	int		*dump;
+
 
 	img.mlx_ptr = mlx_init();
 	if (!img.mlx_ptr)
 		return (1);
 	img.win_img = mlx_new_image(img.mlx_ptr, WIDTH, HEIGHT);
 
-	map = parse_map(argv[1], &map_data);
-	dump = (int *)mlx_get_data_addr(img.win_img, \
+	img.map = parse_map(argv[1], &img);
+	img.dump = (int *)mlx_get_data_addr(img.win_img, \
 	&img.bbp, &img.size_line, &img.end);
 
-	dump = plot_map_horizontal(dump, map, img.size_line, map_data.line_len);
+	img.dump = plot_map_horizontal(img.dump, img.map, img.size_line, img.line_len);
 
 
 	img.win_ptr = mlx_new_window(img.mlx_ptr, WIDTH, HEIGHT, "hello world!");

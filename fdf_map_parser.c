@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 00:37:53 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/14 08:02:19 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/15 04:27:11 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,25 +84,25 @@ static int	*string_to_intarr(char *str, int *line)
 	return (line);
 }
 
-void set_scale(t_data *map_data, int **map)
+void set_scale(t_img *img, int **map)
 {
 	int	i;
 	int	j;
 
 	i = 1;
 	j = 0;
-	if (WIDTH / map_data->line_len < 30)
-		map_data->scale = WIDTH / map_data->line_len / 2;
+	if (WIDTH / img->line_len < 30)
+		img->scale = WIDTH / img->line_len / 2;
 	else
-		map_data->scale = 30;
-	printf("%d\n", map_data->scale);
-	map_data->max_height = 0;
-	while (i < map_data->lines - 1)
+		img->scale = 30;
+	printf("%d\n", img->scale);
+	img->max_height = 0;
+	while (i < img->lines - 1)
 	{
-		while(j < map_data->line_len - 1)
+		while(j < img->line_len - 1)
 		{
-			if (map[i][j] > map_data->max_height)
-				map_data->max_height = map[i][j];
+			if (map[i][j] > img->max_height)
+				img->max_height = map[i][j];
 			++j;
 		}
 		j = 0;
@@ -110,7 +110,7 @@ void set_scale(t_data *map_data, int **map)
 	}
 }
 
-int **parse_map(char *file, t_data *map_data)
+int **parse_map(char *file, t_img *img)
 {
 	int		i;
 	int		fd;
@@ -119,25 +119,26 @@ int **parse_map(char *file, t_data *map_data)
 
 	i = 0;
 	str = "init";
-	map_data->lines = file_line_count(file);
-	map_data->line_len = file_line_size(file);
+	img->lines = file_line_count(file);
+	img->line_len = file_line_size(file);
 
-	map = (int **)malloc(sizeof(int *) * (map_data->lines));
+	map = (int **)malloc(sizeof(int *) * (img->lines));
 	fd = open(file, O_RDONLY);
 	while (str)
 	{
 		str = get_next_line(fd);
 		if (str)
 		{
-			map[i] = (int *)malloc(sizeof(int) *( map_data->line_len));
+			map[i] = (int *)malloc(sizeof(int) *( img->line_len));
 			string_to_intarr(str, map[i]);
 			free (str);
 			i++;
 		}
 	}
-	set_scale(map_data, map);
-	// map[i] = (int *)malloc(sizeof(int) *( map_data->line_len + 1));
-	// ft_bzero((void *)map[i++], (map_data->line_len) * sizeof(int));
+
+	set_scale(img, map);
+	// map[i] = (int *)malloc(sizeof(int) *( img->line_len + 1));
+	// ft_bzero((void *)map[i++], (img->line_len) * sizeof(int));
 	map[i] = NULL;
 	return (map);
 }

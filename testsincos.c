@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 22:36:05 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/15 04:04:47 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/15 04:23:44 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ int	main(int argc, char **argv)
 	dump = (int *)mlx_get_data_addr(img.win_img, \
 	&img.bbp, &img.size_line, &img.end);
 
-	dump = plot_map_horizontal(dump, map, img.size_line, map_data.line_len);
+	dump = plot_map_horizontal(dump, map, img.size_line, img.line_len);
 
 
 	img.win_ptr = mlx_new_window(img.mlx_ptr, WIDTH, HEIGHT, "hello world!");
