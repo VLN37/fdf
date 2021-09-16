@@ -6,14 +6,12 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 05:53:18 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/16 11:21:17 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/16 15:12:00 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "fdf.h"
-
-
 
 static int	gradient(int color, t_coord *xy, t_img img)
 {
@@ -24,7 +22,7 @@ static int	gradient(int color, t_coord *xy, t_img img)
 	if (xy->z0 == 0 && xy->z1 == 0)
 		return (0xFFFFFF);
 	if (xy->z0 == img.max_height && xy->z1 == img.max_height)
-		return(0x990099);
+		return (0x990099);
 	if (xy->z0 == xy->z1)
 		return (color);
 	if (xy->z0 < xy->z1)
@@ -88,7 +86,7 @@ t_coord	bresenham(t_coord xy, t_img img)
 
 	while (1)
 	{
-		if (xy.x0 == xy.x1 &&xy. y0 == xy.y1)
+		if (xy.x0 == xy.x1 && xy.y0 == xy.y1)
 			break ;
 		xy.e2 = 2 * xy.err;
 		if (xy.e2 >= xy.dy)
@@ -109,6 +107,8 @@ t_coord	bresenham(t_coord xy, t_img img)
 	// xy.lastcolor = color;
 	return (xy);
 }
+
+
 
 // static int get_initial_color(int maxh, int currh, t_coord *xy, t_img img)
 // {

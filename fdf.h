@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 01:58:02 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/16 11:32:09 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/16 15:32:08 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100
+# define OFFSETXX 0
+# define OFFSETYY -600
 
 typedef struct s_img
 {
@@ -54,6 +56,8 @@ typedef struct s_img
 
 	int		offsetx;
 	int		offsety;
+	double	cos1;
+	double	sin1;
 }	t_img;
 
 typedef struct s_coord
@@ -65,6 +69,7 @@ typedef struct s_coord
 	int	z0;
 	int	z1;
 
+
 	int	dx;
 	int	sx;
 	int	dy;
@@ -74,11 +79,15 @@ typedef struct s_coord
 	int	lastcolor;
 	int	colorfactor;
 	int	iteration;
+	int	iterationmax;
 }	t_coord;
 
 int **parse_map(char *file, t_img *img);
 t_coord	bresenham(t_coord xy, t_img img);
 int	*plot_map_horizontal(int *dump, int **map, int	size_line, t_img img);
 int	*plot_map_vertical(int *dump, int **map, int size_line, t_img img);
+int	screen_controller(int key, t_img *img);
+int	keys_arrow(int key, t_img *img);
+int	keys_wasd(int key, t_img *img);
 
 #endif
