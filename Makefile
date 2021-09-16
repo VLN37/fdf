@@ -1,15 +1,16 @@
 LIBFT	= make -C ./libft all
 LINKS	= -I./libft -L./libft  -lft -I./minilibx -L./minilibx  -lmlx -lX11 -lXext
 SANIT	= -fsanitize=address -g3
+SRCS	= fdf_plotmap.c fdf_map_parser.c fdf.c fdf_bresenham.c
 
 fdf: makelibft
-	clang fdf_plotmap.c fdf_map_parser.c $(LINKS) && ./a.out ./maps/test_maps/42.fdf
+	clang $(SRCS) $(LINKS) && ./a.out ./maps/test_maps/42.fdf
 
 fdfsanit: makelibft
-	clang fdf_plotmap.c fdf_map_parser.c $(SANIT) $(LINKS) -lm && ./a.out ./maps/test_maps/42.fdf
+	clang $(SRCS) $(SANIT) $(LINKS) -lm && ./a.out ./maps/test_maps/42.fdf
 
 fdfvalg: makelibft
-	clang fdf_plotmap.c fdf_map_parser.c $(LINKS) -lm && valgrind ./a.out ./maps/test_maps/42.fdf
+	clang $(SRCS) $(LINKS) -lm && valgrind ./a.out ./maps/test_maps/42.fdf
 
 horiz: makelibft
 	clang testreadmap.c fdf_map_parser.c $(LINKS) && ./a.out 42.fdf

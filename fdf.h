@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 01:58:02 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/15 16:06:58 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/16 06:09:49 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,9 @@ typedef struct s_coord
 	int	iteration;
 }	t_coord;
 
-// typedef struct s_map_data
-// {
-// 	int	lines;
-// 	int	line_len;
-// 	int	scale;
-// 	int	max_height;
-// }	t_data;
-
 int **parse_map(char *file, t_img *img);
+t_coord	bresenham(t_coord xy, t_img img);
+int	*plot_map_horizontal(int *dump, int **map, int	size_line, t_img img);
+int	*plot_map_vertical(int *dump, int **map, int size_line, t_img img);
 
 #endif
