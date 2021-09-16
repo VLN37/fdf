@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 01:58:02 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/16 07:44:59 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/16 11:32:09 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@
 # define HEIGHT 900
 # define OFFSET 100
 # define INCREMENT 30
+
+# define KEY_UP 65362
+# define KEY_DOWN 65364
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
 
 typedef struct s_img
 {
