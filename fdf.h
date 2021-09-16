@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 01:58:02 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/15 04:46:59 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/15 16:06:58 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ typedef struct s_img
 	int		line_len;
 	int		scale;
 	int		max_height;
+
+	int		offsetx;
+	int		offsety;
 }	t_img;
 
 typedef struct s_coord
@@ -59,6 +62,8 @@ typedef struct s_coord
 	int	sy;
 	int	err;
 	int	e2;
+	int	colorfactor;
+	int	iteration;
 }	t_coord;
 
 // typedef struct s_map_data

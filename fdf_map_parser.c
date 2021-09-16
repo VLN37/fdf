@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 00:37:53 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/15 04:27:11 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/15 05:36:12 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void set_scale(t_img *img, int **map)
 		img->scale = WIDTH / img->line_len / 2;
 	else
 		img->scale = 30;
-	printf("%d\n", img->scale);
+	printf("scale: %d\n", img->scale);
 	img->max_height = 0;
 	while (i < img->lines - 1)
 	{

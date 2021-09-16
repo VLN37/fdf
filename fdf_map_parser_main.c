@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 03:25:00 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/15 04:23:44 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/15 05:29:43 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	main(int argc, char **argv)
 {
 	int		fd;
 	int		**map;
-	t_data	map_data;
+	t_img	img;
 
 	if (argc != 2)
 		printf("expected usage: ./a.out (filename)\n");
-	map = parse_map(argv[1], &map_data);
+	map = parse_map(argv[1], &img);
 
 	int	i = 0;
 	int	j = 0;
