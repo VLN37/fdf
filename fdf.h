@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 01:58:02 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/16 06:09:49 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/16 07:44:59 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_coord
 	int	sy;
 	int	err;
 	int	e2;
+	int	lastcolor;
 	int	colorfactor;
 	int	iteration;
 }	t_coord;

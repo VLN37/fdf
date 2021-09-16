@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 22:36:05 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/16 06:00:26 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/16 09:10:29 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ static t_coord	iso(t_coord coord)
 
 static t_coord	get_coord_horiz(t_coord xy, int **map, int x, int y, int scale)
 {
-	// xy.z0 = xy.z1 - map[x][y];
-	// xy.z1 = map[x][y + 1];
 	xy.z0 = map[x][y];
 	xy.z1 = map[x][y + 1];
 	xy.y0 = ((-map[x][y]) + (x * scale + OFFSET));
