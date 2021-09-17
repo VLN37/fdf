@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 14:01:25 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/17 15:26:10 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/17 15:55:41 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,5 @@ int	keys_arrow(int key, t_img *img)
 		key_left (img);
 	else if (key == KEY_RIGHT)
 		key_right(img);
+	return (0);
 }

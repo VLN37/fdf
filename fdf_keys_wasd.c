@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 14:24:06 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/17 15:26:22 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/17 15:56:02 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,5 @@ int	keys_wasd(int key, t_img *img)
 		key_s(img);
 	if (key == KEY_D)
 		key_d(img);
+	return (0);
 }

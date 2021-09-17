@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 01:58:02 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/17 13:57:52 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/17 15:59:31 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define OFFSET 100
 # define INCREMENT 30
 
+# define KEY_ESC 65307
 # define KEY_UP 65362
 # define KEY_DOWN 65364
 # define KEY_LEFT 65361
@@ -91,5 +92,4 @@ int	*plot_map_vertical(int *dump, int **map, int size_line, t_img img);
 int	screen_controller(int key, t_img *img);
 int	keys_arrow(int key, t_img *img);
 int	keys_wasd(int key, t_img *img);
-
 #endif
