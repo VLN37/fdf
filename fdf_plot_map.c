@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 22:36:05 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/16 15:42:44 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/16 18:53:42 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ static t_coord	iso(t_coord coord, t_img img)
 	int	isox1;
 	int	isoy1;
 
-	// isox0 = (coord.x0 - coord.y0) / img.cos1;
-	// isoy0 = (coord.x0 + coord.y0) / img.sin1;
-	// isox1 = (coord.x1 - coord.y1) / img.cos1;
-	// isoy1 = (coord.x1 + coord.y1) / img.sin1;
-//
-	isox0 = round((coord.x0 - coord.y0) * cos(0.523599));
-	isoy0 = round((coord.x0 + coord.y0) * sin(0.523599));
-	isox1 = round((coord.x1 - coord.y1) * cos(0.523599));
-	isoy1 = round((coord.x1 + coord.y1) * sin(0.523599));
+	isox0 = (coord.x0 - coord.y0) / img.cos1;
+	isoy0 = (coord.x0 + coord.y0) / img.sin1;
+	isox1 = (coord.x1 - coord.y1) / img.cos1;
+	isoy1 = (coord.x1 + coord.y1) / img.sin1;
+
+	// isox0 = round((coord.x0 - coord.y0) * cos(0.523599));
+	// isoy0 = round((coord.x0 + coord.y0) * sin(0.523599));
+	// isox1 = round((coord.x1 - coord.y1) * cos(0.523599));
+	// isoy1 = round((coord.x1 + coord.y1) * sin(0.523599));
 
 	coord.x0 = isox0;
 	coord.y0 = isoy0;
