@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 14:01:25 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/16 20:32:58 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/17 15:26:10 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static int	key_up(t_img *img)
 {
-	img->offsety -= 10;
+	img->offsety -= 20;
 	mlx_destroy_image(img->mlx_ptr, img->win_img);
 	img->win_img = mlx_new_image(img->mlx_ptr, WIDTH, HEIGHT);
 	img->dump = (int *)mlx_get_data_addr(img->win_img, \
@@ -28,7 +28,7 @@ static int	key_up(t_img *img)
 
 static int	key_down(t_img *img)
 {
-	img->offsety += 10;
+	img->offsety += 20;
 	mlx_destroy_image(img->mlx_ptr, img->win_img);
 	img->win_img = mlx_new_image(img->mlx_ptr, WIDTH, HEIGHT);
 	img->dump = (int *)mlx_get_data_addr(img->win_img, \
@@ -41,7 +41,7 @@ static int	key_down(t_img *img)
 
 static int	key_right(t_img *img)
 {
-	img->offsetx += 10;
+	img->offsetx += 20;
 	mlx_destroy_image(img->mlx_ptr, img->win_img);
 	img->win_img = mlx_new_image(img->mlx_ptr, WIDTH, HEIGHT);
 	img->dump = (int *)mlx_get_data_addr(img->win_img, \
@@ -52,9 +52,9 @@ static int	key_right(t_img *img)
 	return (0);
 }
 
-static int	key_left (t_img *img)
+static int	key_left(t_img *img)
 {
-	img->offsetx -= 10;
+	img->offsetx -= 20;
 	mlx_destroy_image(img->mlx_ptr, img->win_img);
 	img->win_img = mlx_new_image(img->mlx_ptr, WIDTH, HEIGHT);
 	img->dump = (int *)mlx_get_data_addr(img->win_img, \

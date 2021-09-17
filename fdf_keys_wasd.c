@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 14:24:06 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/16 15:36:58 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/17 15:26:22 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ static int	key_d(t_img *img)
 	mlx_put_image_to_window(img->mlx_ptr, img->win_ptr, img->win_img, 0, 0);
 	return (0);
 }
-
 
 int	keys_wasd(int key, t_img *img)
 {

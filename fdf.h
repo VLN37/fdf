@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 01:58:02 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/16 15:32:08 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/17 13:57:52 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,11 @@ typedef struct s_coord
 	int	err;
 	int	e2;
 	int	lastcolor;
-	int	colorfactor;
+	float	colorfactor;
+	float	heightfactor;
 	int	iteration;
 	int	iterationmax;
+	int	pixellen;
 }	t_coord;
 
 int **parse_map(char *file, t_img *img);

@@ -6,13 +6,17 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 22:36:05 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/16 18:53:42 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/17 15:34:10 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "fdf.h"
 
+// isox0 = round((coord.x0 - coord.y0) * cos(0.523599));
+// isoy0 = round((coord.x0 + coord.y0) * sin(0.523599));
+// isox1 = round((coord.x1 - coord.y1) * cos(0.523599));
+// isoy1 = round((coord.x1 + coord.y1) * sin(0.523599));
 static t_coord	iso(t_coord coord, t_img img)
 {
 	int	isox0;
@@ -24,12 +28,6 @@ static t_coord	iso(t_coord coord, t_img img)
 	isoy0 = (coord.x0 + coord.y0) / img.sin1;
 	isox1 = (coord.x1 - coord.y1) / img.cos1;
 	isoy1 = (coord.x1 + coord.y1) / img.sin1;
-
-	// isox0 = round((coord.x0 - coord.y0) * cos(0.523599));
-	// isoy0 = round((coord.x0 + coord.y0) * sin(0.523599));
-	// isox1 = round((coord.x1 - coord.y1) * cos(0.523599));
-	// isoy1 = round((coord.x1 + coord.y1) * sin(0.523599));
-
 	coord.x0 = isox0;
 	coord.y0 = isoy0;
 	coord.x1 = isox1;
@@ -45,8 +43,7 @@ static t_coord	get_coord_horiz(t_coord xy, int **map, int x, int y, int scale)
 	xy.x0 = ((-map[x][y]) + (y * scale + OFFSETXX));
 	xy.y1 = ((-map[x][y + 1]) + (x * scale + OFFSETYY));
 	xy.x1 = ((-map[x][y + 1]) + (y * scale + scale + OFFSETXX));
-
-	return(xy);
+	return (xy);
 }
 
 static t_coord	get_coord_vert(t_coord xy, int **map, int x, int y, int scale)
@@ -57,15 +54,14 @@ static t_coord	get_coord_vert(t_coord xy, int **map, int x, int y, int scale)
 	xy.x0 = ((-map[x][y]) + (y * scale + OFFSETXX));
 	xy.y1 = ((-map[x + 1][y]) + (x * scale + scale + OFFSETYY));
 	xy.x1 = ((-map[x + 1][y]) + (y * scale + OFFSETXX));
-
-	return(xy);
+	return (xy);
 }
 
 int	*plot_map_horizontal(int *dump, int **map, int	size_line, t_img img)
 {
-	int	x;
-	int	y;
-	t_coord coord;
+	int		x;
+	int		y;
+	t_coord	coord;
 
 	coord.z0 = 0;
 	coord.z1 = 0;
@@ -88,15 +84,14 @@ int	*plot_map_horizontal(int *dump, int **map, int	size_line, t_img img)
 
 int	*plot_map_vertical(int *dump, int **map, int size_line, t_img img)
 {
-	int	x;
-	int	y;
-	t_coord coord;
+	int		x;
+	int		y;
+	t_coord	coord;
 
 	coord.z0 = 0;
 	coord.z1 = 0;
 	x = 0;
 	y = 0;
-
 	while (x < img.lines - 2)
 	{
 		while (y < img.line_len)
@@ -111,4 +106,3 @@ int	*plot_map_vertical(int *dump, int **map, int size_line, t_img img)
 	}
 	return (dump);
 }
-

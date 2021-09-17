@@ -6,13 +6,17 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 05:53:18 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/17 10:16:01 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/17 15:36:53 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "fdf.h"
 
+// if (color < 0xff1a1a)
+// 	return(0xff1a1a);
+// if (color > 0xFFFFFF)
+// 	return(0xFFFFFF);
 static int	gradient(int color, t_coord *xy, t_img img)
 {
 	int	up;
@@ -23,35 +27,19 @@ static int	gradient(int color, t_coord *xy, t_img img)
 		return (0xFFFFFF);
 	if (xy->z0 == img.max_height && xy->z1 == img.max_height)
 		return (0x990099);
-	// if (xy->z0 == xy->z1)
-	// 	return (color);
+	if (xy->z0 == xy->z1)
+		return (color);
 	if (xy->z0 < xy->z1)
-	{
 		color -= up * xy->colorfactor * xy->iteration;
-		//* heightfactor ?
-		if (color < 0xff1a1a)
-			return(0xff1a1a);
-	}
-	else if(xy->z0 > xy->z1)
-	{
+	else if (xy->z0 > xy->z1)
 		color += up * xy->colorfactor * xy->iteration;
-		//* heightfactor ?
-		if (color > 0xFFFFFF)
-			return(0xFFFFFF);
-	}
-	xy->iteration += 2;
-	//xy->lastcolor = color;
+	xy->iteration += 1;
 	return (color);
 }
-//fator da altura e multiplicar o inicio por essa diferença
-// 1 - 255 / altura maxima
-// > 0
-
 
 static t_coord	init_bresenham(t_coord xy, t_img img)
 {
 	xy.iteration = 0;
-	xy.colorfactor = 50 / img.max_height;
 	xy.x0 += img.offsetx;
 	xy.x1 += img.offsetx;
 	xy.y1 += img.offsety;
@@ -67,7 +55,6 @@ static t_coord	init_bresenham(t_coord xy, t_img img)
 	else
 		xy.sy = -1;
 	xy.err = xy.dx + xy.dy;
-
 	return (xy);
 }
 
@@ -96,61 +83,51 @@ int	bresenham_len(t_coord xy, t_img img)
 	return (i);
 }
 
-// t_coord	bresenham(t_coord xy, t_img img)
-// {
-// 	xy = init_bresenham(xy, img);
-// 	int	color;
-// 	int	heightfactor;
+int	initial_color(t_coord *xy, t_img *img)
+{
+	int	color;
 
-// 	heightfactor = 1;
-// 	if (xy.z0 < xy.z1 && xy.z0 == 0)
-// 		color = 0xffe6e6;
-// 	else if (xy.z0 > xy.z1 && xy.z1 == 0)
-// 		color = 0xFF1a1a;
-// 	// if (xy.z0 > 0 && xy.z1 > xy.z0 || xy.z0 < img.max_height && xy.z0 > xy.z1)
-// 	// 	heightfactor = (255 * xy.z0) / img.max_height;
-// 	// color += heightfactor
-// 	printf("%d\n", bresenham_len(xy, img));
-// 	while (1)
-// 	{
-// 		if (xy.x0 == xy.x1 && xy.y0 == xy.y1)
-// 			break ;
-// 		xy.e2 = 2 * xy.err;
-// 		if (xy.e2 >= xy.dy)
-// 		{
-// 			xy.err += xy.dy;
-// 			if (xy.x0 < WIDTH && xy.x0 > 0 && xy.y0 > 0 && xy.y0 < HEIGHT )
-// 				img.dump[xy.x0 + (xy.y0 * img.size_line / 4)] = gradient(color, &xy, img);
-// 			xy.x0 += xy.sx;
-// 		}
-// 		if (xy.e2 <= xy.dx)
-// 		{
-// 			xy.err += xy.dx;
-// 			if (xy.x0 < WIDTH && xy.x0 > 0 && xy.y0 > 0 && xy.y0 < HEIGHT )
-// 					img.dump[xy.x0 + (xy.y0 * img.size_line / 4)] = gradient(color, &xy, img);
-// 			xy.y0 += xy.sy;
-// 		}
-// 	}
-// 	// xy.lastcolor = color;
-// 	return (xy);
-// }
+	if (xy->z0 < xy->z1)
+	{
+		color = 0xFFFDFD;
+		xy->colorfactor = 255.00 / (float)xy->pixellen;
+		if (xy->z0 > 0)
+		{
+			color -= 0x000101 * xy->heightfactor * xy->z0;
+			xy->colorfactor = 255.00 / (float)xy->pixellen / \
+			((float)xy->z1 -((float) xy->z0 + 0.01));
+		}
+	}
+	else if (xy->z0 > xy->z1)
+	{
+		color = 0xFF0101;
+		xy->colorfactor = 255.00 / (float)xy->pixellen;
+		if (xy->z0 < img->max_height)
+		{
+			color -= 0x000101 * xy->heightfactor * xy->z0;
+			xy->colorfactor = 255.00 / ((float)xy->pixellen + 0.01) / \
+			(((float)xy->z0 + 0.01) / ((float)xy->z1 + 0.01));
+		}
+	}
+	else
+	{
+		color = 0xffFDFD;
+		if (xy->z0 > 0)
+			color -= 0x000101 * xy->heightfactor * xy->z0;
+	}
+	return (color);
+}
 
 t_coord	bresenham(t_coord xy, t_img img)
 {
-	xy = init_bresenham(xy, img);
 	int	color;
-	int	heightfactor;
 
-	heightfactor = 1;
-	if (xy.z0 < xy.z1 && xy.z0 == 0)
-		color = 0xffFDFD;
-	else if (xy.z0 > xy.z1 && xy.z1 == 0)
-		color = 0xFF0101;
-	// if (xy.z0 > 0 && xy.z1 > xy.z0 || xy.z0 < img.max_height && xy.z0 > xy.z1)
-	// 	heightfactor = (255 * xy.z0) / img.max_height;
-	// color += heightfactor
-
-	printf("%d\n", bresenham_len(xy, img));
+	xy = init_bresenham(xy, img);
+	xy.heightfactor = 255.00 / (float)img.max_height;
+	xy.pixellen = bresenham_len(xy, img);
+	color = initial_color(&xy, &img);
+	printf("pixellen %d, colorfactor %f, heightfactor %f\n"\
+	, xy.pixellen, xy.colorfactor, xy.heightfactor);
 	while (1)
 	{
 		if (xy.x0 == xy.x1 && xy.y0 == xy.y1)
@@ -166,9 +143,9 @@ t_coord	bresenham(t_coord xy, t_img img)
 			xy.err += xy.dx;
 			xy.y0 += xy.sy;
 		}
-		if (xy.x0 < WIDTH && xy.x0 > 0 && xy.y0 > 0 && xy.y0 < HEIGHT )
-			img.dump[xy.x0 + (xy.y0 * img.size_line / 4)] = gradient(color, &xy, img);
+		if (xy.x0 < WIDTH && xy.x0 > 0 && xy.y0 > 0 && xy.y0 < HEIGHT)
+			img.dump[xy.x0 + (xy.y0 * img.size_line / 4)] \
+			= gradient(color, &xy, img);
 	}
-	// xy.lastcolor = color;
 	return (xy);
 }
