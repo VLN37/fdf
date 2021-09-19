@@ -1,8 +1,8 @@
 CC		= clang
 CCFLAGS	= -Wall -Wextra -Werror
 LIBFT	= make -C ./libft all
-LINKS	= -I./libft -L./libft  -lft -I./minilibx -L./minilibx  -lmlx -lX11 \
--lXext -lm
+LINKS	= -I./libft -L./libft  -lft -I./minilibx -L./minilibx
+LIBS	= -lmlx -lX11 -lXext -lm
 NAME	= fdf
 SANIT	= -fsanitize=address -g3
 SRCS	= fdf_plot_map.c \
@@ -20,19 +20,19 @@ OBJ		= $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME):	makelibft makelibx  $(OBJ)
-	$(CC) $(OBJ) -o $(NAME) $(LINKS)
+	$(CC) $(OBJ) -o $(NAME) $(LINKS) $(LIBS)
 
 .c.o:
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -I./libft
 
 fdfrun:		makelibx makelibft $(OBJ)
-	$(CC) $(OBJ) -o $(NAME) $(LINKS) && ./$(NAME) 42.fdf
+	$(CC) $(OBJ) -o $(NAME) $(LINKS) $(LIBS) && ./$(NAME) 42.fdf
 
 fdfsanit:	makelibx makelibft $(OBJ)
-	$(CC) $(OBJ) -o $(NAME) $(SANIT) $(LINKS) && ./$(NAME) 42.fdf
+	$(CC) $(OBJ) -o $(NAME) $(SANIT) $(LINKS) $(LIBS) && ./$(NAME) 42.fdf
 
 fdfvalg:	makelibx makelibft $(OBJ)
-	$(CC) $(SRCS) -o $(NAME) $(LINKS) && valgrind ./$(NAME) 42.fdf
+	$(CC) $(SRCS) -o $(NAME) $(LINKS) $(LIBS) && valgrind ./$(NAME) 42.fdf
 
 clean:
 	rm -f $(OBJ)
