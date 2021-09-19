@@ -6,22 +6,18 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 00:37:53 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/17 15:30:35 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/19 11:11:16 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "mlx.h"
 
-static int	file_line_size(char *file)
+static int	file_line_len(char *str)
 {
-	int		i;
-	int		j;
-	char	*str;
-	int		fd;
+	int	i;
+	int	j;
 
-	fd = open(file, O_RDONLY);
-	str = get_next_line(fd);
 	i = 0;
 	j = 0;
 	while (str[j])
@@ -35,6 +31,18 @@ static int	file_line_size(char *file)
 		if (str[j])
 			j++;
 	}
+	return (i);
+}
+
+static int	file_line_size(char *file)
+{
+	int		i;
+	char	*str;
+	int		fd;
+
+	fd = open(file, O_RDONLY);
+	str = get_next_line(fd);
+	i = file_line_len(str);
 	while (str)
 	{
 		free (str);
@@ -81,32 +89,6 @@ static int	*string_to_intarr(char *str, int *line)
 			str++;
 	}
 	return (line);
-}
-
-void	set_scale(t_img *img, int **map)
-{
-	int	i;
-	int	j;
-
-	i = 1;
-	j = 0;
-	if (WIDTH / img->line_len < 30)
-		img->scale = WIDTH / img->line_len / 2;
-	else
-		img->scale = 30;
-	printf("scale: %d\n", img->scale);
-	img->max_height = 0;
-	while (i < img->lines - 1)
-	{
-		while (j < img->line_len - 1)
-		{
-			if (map[i][j] > img->max_height)
-				img->max_height = map[i][j];
-			++j;
-		}
-		j = 0;
-		i++;
-	}
 }
 
 // map[i] = (int *)malloc(sizeof(int) *( img->line_len + 1));

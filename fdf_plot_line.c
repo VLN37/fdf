@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 05:53:18 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/17 15:36:53 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/19 11:15:40 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,8 @@ t_coord	bresenham(t_coord xy, t_img img)
 	xy.heightfactor = 255.00 / (float)img.max_height;
 	xy.pixellen = bresenham_len(xy, img);
 	color = initial_color(&xy, &img);
-	printf("pixellen %d, colorfactor %f, heightfactor %f\n"\
-	, xy.pixellen, xy.colorfactor, xy.heightfactor);
+	// printf("pixellen %d, colorfactor %f, heightfactor %f\n"\
+	// , xy.pixellen, xy.colorfactor, xy.heightfactor);
 	while (1)
 	{
 		if (xy.x0 == xy.x1 && xy.y0 == xy.y1)

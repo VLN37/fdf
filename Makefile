@@ -14,7 +14,7 @@ fdfsanit: makelibft
 	clang $(SRCS) $(SANIT) $(LINKS) -lm && ./a.out ./maps/test_maps/42.fdf
 
 fdfvalg: makelibft
-	clang $(SRCS) $(LINKS) -lm && valgrind ./a.out ./maps/test_maps/42.fdf
+	clang $(SRCS) $(LINKS) -lm && valgrind  -s ./a.out ./maps/test_maps/42.fdf
 
 horiz: makelibft
 	clang testreadmap.c fdf_map_parser.c $(LINKS) && ./a.out 42.fdf
