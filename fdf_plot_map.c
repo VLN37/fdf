@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 22:36:05 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/19 13:29:06 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/19 13:43:58 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,29 +35,29 @@ static t_coord	iso(t_coord coord, t_img img)
 	return (coord);
 }
 
-static t_coord	get_coord_horiz(t_coord xy, int **map, int x, int y, int scale)
+static t_coord	get_coord_horiz(t_coord xy, t_img img, int x, int y)
 {
-	xy.z0 = map[x][y];
-	xy.z1 = map[x][y + 1];
-	xy.y0 = ((-map[x][y]) + (x * scale + OFFSETYY));
-	xy.x0 = ((-map[x][y]) + (y * scale + OFFSETXX));
-	xy.y1 = ((-map[x][y + 1]) + (x * scale + OFFSETYY));
-	xy.x1 = ((-map[x][y + 1]) + (y * scale + scale + OFFSETXX));
+	xy.z0 = img.map[x][y];
+	xy.z1 = img.map[x][y + 1];
+	xy.y0 = ((-img.map[x][y]) + (x * img.scale + OFFSETYY));
+	xy.x0 = ((-img.map[x][y]) + (y * img.scale + OFFSETXX));
+	xy.y1 = ((-img.map[x][y + 1]) + (x * img.scale + OFFSETYY));
+	xy.x1 = ((-img.map[x][y + 1]) + (y * img.scale + img.scale + OFFSETXX));
 	return (xy);
 }
 
-static t_coord	get_coord_vert(t_coord xy, int **map, int x, int y, int scale)
+static t_coord	get_coord_vert(t_coord xy, t_img img, int x, int y)
 {
-	xy.z0 = map[x][y];
-	xy.z1 = map[x + 1][y];
-	xy.y0 = ((-map[x][y]) + (x * scale + OFFSETYY));
-	xy.x0 = ((-map[x][y]) + (y * scale + OFFSETXX));
-	xy.y1 = ((-map[x + 1][y]) + (x * scale + scale + OFFSETYY));
-	xy.x1 = ((-map[x + 1][y]) + (y * scale + OFFSETXX));
+	xy.z0 = img.map[x][y];
+	xy.z1 = img.map[x + 1][y];
+	xy.y0 = ((-img.map[x][y]) + (x * img.scale + OFFSETYY));
+	xy.x0 = ((-img.map[x][y]) + (y * img.scale + OFFSETXX));
+	xy.y1 = ((-img.map[x + 1][y]) + (x * img.scale + img.scale + OFFSETYY));
+	xy.x1 = ((-img.map[x + 1][y]) + (y * img.scale + OFFSETXX));
 	return (xy);
 }
 
-int	*plot_map_horizontal(int *dump, int **map, int size_line, t_img img)
+int	*plot_map_horizontal(t_img img)
 {
 	int		x;
 	int		y;
@@ -71,18 +71,18 @@ int	*plot_map_horizontal(int *dump, int **map, int size_line, t_img img)
 	{
 		while (y < img.line_len - 1)
 		{
-			coord = get_coord_horiz(coord, map, x, y, img.scale);
+			coord = get_coord_horiz(coord, img, x, y);
 			coord = iso(coord, img);
-			coord = bresenham(coord, img);
+			bresenham(coord, img);
 			y++;
 		}
 		x++;
 		y = 0;
 	}
-	return (dump);
+	return (img.dump);
 }
 
-int	*plot_map_vertical(int *dump, int **map, int size_line, t_img img)
+int	*plot_map_vertical(t_img img)
 {
 	int		x;
 	int		y;
@@ -96,13 +96,13 @@ int	*plot_map_vertical(int *dump, int **map, int size_line, t_img img)
 	{
 		while (y < img.line_len)
 		{
-			coord = get_coord_vert(coord, map, x, y, img.scale);
+			coord = get_coord_vert(coord, img, x, y);
 			coord = iso(coord, img);
-			coord = bresenham(coord, img);
+			bresenham(coord, img);
 			y++;
 		}
 		x++;
 		y = 0;
 	}
-	return (dump);
+	return (img.dump);
 }

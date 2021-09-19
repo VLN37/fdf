@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 01:58:02 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/19 13:29:47 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/19 13:43:53 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ typedef struct s_coord
 }	t_coord;
 
 int **parse_map(char *file, t_img *img);
-t_coord	bresenham(t_coord xy, t_img img);
-int	*plot_map_horizontal(int *dump, int **map, int	size_line, t_img img);
-int	*plot_map_vertical(int *dump, int **map, int size_line, t_img img);
+void	bresenham(t_coord xy, t_img img);
+int	*plot_map_horizontal(t_img img);
+int	*plot_map_vertical(t_img img);
 int	screen_controller(int key, t_img *img);
 int	keys_arrow(int key, t_img *img);
 int	keys_wasd(int key, t_img *img);

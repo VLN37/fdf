@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 05:53:18 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/19 13:25:00 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/19 13:45:32 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 static int	gradient(int color, t_coord *xy, t_img img)
 {
 	int	up;
-	int	down;
 
 	up = 0x000101;
 	if (xy->z0 == 0 && xy->z1 == 0)
@@ -118,7 +117,9 @@ int	initial_color(t_coord *xy, t_img *img)
 	return (color);
 }
 
-t_coord	bresenham(t_coord xy, t_img img)
+// printf("pixellen %d, colorfactor %f, heightfactor %f\n"
+// , xy.pixellen, xy.colorfactor, xy.heightfactor);
+void	bresenham(t_coord xy, t_img img)
 {
 	int	color;
 
@@ -126,8 +127,6 @@ t_coord	bresenham(t_coord xy, t_img img)
 	xy.heightfactor = 255.00 / (float)img.max_height;
 	xy.pixellen = bresenham_len(xy, img);
 	color = initial_color(&xy, &img);
-	printf("pixellen %d, colorfactor %f, heightfactor %f\n"\
-	, xy.pixellen, xy.colorfactor, xy.heightfactor);
 	while (1)
 	{
 		if (xy.x0 == xy.x1 && xy.y0 == xy.y1)
@@ -147,5 +146,4 @@ t_coord	bresenham(t_coord xy, t_img img)
 			img.dump[xy.x0 + (xy.y0 * img.size_line / 4)] \
 			= gradient(color, &xy, img);
 	}
-	return (xy);
 }
