@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 01:58:02 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/19 13:50:48 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/19 15:03:21 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,15 +84,15 @@ typedef struct s_coord
 	int		pixellen;
 }	t_coord;
 
-int **parse_map(char *file, t_img *img);
+int		**parse_map(char *file, t_img *img);
 void	bresenham(t_coord xy, t_img img);
-int	*plot_map_horizontal(t_img img);
-int	*plot_map_vertical(t_img img);
-int	screen_controller(int key, t_img *img);
-int	keys_arrow(int key, t_img *img);
-int	keys_wasd(int key, t_img *img);
-void	init_image_data(t_img *img);
-int	get_color(t_coord *xy, t_img *img);
-int	validation(int argc, char **argv);
+int		*plot_map_horizontal(t_img img);
+int		*plot_map_vertical(t_img img);
+int		screen_controller(int key, t_img *img);
+int		keys_arrow(int key, t_img *img);
+int		keys_wasd(int key, t_img *img);
+void	init_image_data(t_img *img, char **argv);
+int		get_color(t_coord *xy, t_img *img);
+int		validation(int argc, char **argv);
 
 #endif

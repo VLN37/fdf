@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 13:01:29 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/19 13:03:29 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/19 15:03:41 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,14 @@ static void	set_scale(t_img *img, int **map)
 	}
 }
 
-void	init_image_data(t_img *img)
+void	init_image_data(t_img *img, char **argv)
 {
 	img->offsetx = 200;
 	img->offsety = 400;
 	img->cos1 = 1.0;
 	img->sin1 = 2.0;
+	img->mlx_ptr = mlx_init();
+	img->map = parse_map(argv[1], img);
 	set_scale(img, img->map);
 	img->win_img = mlx_new_image(img->mlx_ptr, WIDTH, HEIGHT);
 	img->win_ptr = mlx_new_window(img->mlx_ptr, WIDTH, HEIGHT, "hello world!");

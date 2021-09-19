@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 14:01:25 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/19 13:38:56 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/19 15:46:34 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ static int	key_left(t_img *img)
 
 int	keys_arrow(int key, t_img *img)
 {
-	printf("%d\n", key);
 	if (key == KEY_UP)
 		key_up(img);
 	else if (key == KEY_DOWN)
