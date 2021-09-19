@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 05:53:18 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/19 13:45:32 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/19 13:54:54 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,41 +82,6 @@ int	bresenham_len(t_coord xy, t_img img)
 	return (i);
 }
 
-int	initial_color(t_coord *xy, t_img *img)
-{
-	int	color;
-
-	if (xy->z0 < xy->z1)
-	{
-		color = 0xFFFDFD;
-		xy->colorfactor = 255.00 / (float)xy->pixellen;
-		if (xy->z0 > 0)
-		{
-			color -= 0x000101 * xy->heightfactor * xy->z0;
-			xy->colorfactor = 255.00 / (float)xy->pixellen / \
-			((float)xy->z1 -((float) xy->z0 + 0.01));
-		}
-	}
-	else if (xy->z0 > xy->z1)
-	{
-		color = 0xFF0101;
-		xy->colorfactor = 255.00 / (float)xy->pixellen;
-		if (xy->z0 < img->max_height)
-		{
-			color -= 0x000101 * xy->heightfactor * xy->z0;
-			xy->colorfactor = 255.00 / ((float)xy->pixellen + 0.01) / \
-			(((float)xy->z0 + 0.01) / ((float)xy->z1 + 0.01));
-		}
-	}
-	else
-	{
-		color = 0xffFDFD;
-		if (xy->z0 > 0)
-			color -= 0x000101 * xy->heightfactor * xy->z0;
-	}
-	return (color);
-}
-
 // printf("pixellen %d, colorfactor %f, heightfactor %f\n"
 // , xy.pixellen, xy.colorfactor, xy.heightfactor);
 void	bresenham(t_coord xy, t_img img)
@@ -126,7 +91,7 @@ void	bresenham(t_coord xy, t_img img)
 	xy = init_bresenham(xy, img);
 	xy.heightfactor = 255.00 / (float)img.max_height;
 	xy.pixellen = bresenham_len(xy, img);
-	color = initial_color(&xy, &img);
+	color = get_color(&xy, &img);
 	while (1)
 	{
 		if (xy.x0 == xy.x1 && xy.y0 == xy.y1)
