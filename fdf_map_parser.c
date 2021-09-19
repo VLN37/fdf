@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 00:37:53 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/19 11:11:16 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/19 13:06:31 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ int	**parse_map(char *file, t_img *img)
 			i++;
 		}
 	}
-	set_scale(img, map);
 	map[i] = NULL;
 	return (map);
 }

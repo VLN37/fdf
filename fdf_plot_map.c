@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 22:36:05 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/17 15:34:10 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/19 13:29:06 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static t_coord	get_coord_vert(t_coord xy, int **map, int x, int y, int scale)
 	return (xy);
 }
 
-int	*plot_map_horizontal(int *dump, int **map, int	size_line, t_img img)
+int	*plot_map_horizontal(int *dump, int **map, int size_line, t_img img)
 {
 	int		x;
 	int		y;

@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 01:58:02 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/17 15:59:31 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/19 13:29:47 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,26 +63,25 @@ typedef struct s_img
 
 typedef struct s_coord
 {
-	int	x0;
-	int	y0;
-	int	x1;
-	int	y1;
-	int	z0;
-	int	z1;
+	int		x0;
+	int		y0;
+	int		x1;
+	int		y1;
+	int		z0;
+	int		z1;
 
-
-	int	dx;
-	int	sx;
-	int	dy;
-	int	sy;
-	int	err;
-	int	e2;
-	int	lastcolor;
+	int		dx;
+	int		sx;
+	int		dy;
+	int		sy;
+	int		err;
+	int		e2;
+	int		lastcolor;
 	float	colorfactor;
 	float	heightfactor;
-	int	iteration;
-	int	iterationmax;
-	int	pixellen;
+	int		iteration;
+	int		iterationmax;
+	int		pixellen;
 }	t_coord;
 
 int **parse_map(char *file, t_img *img);
@@ -92,4 +91,7 @@ int	*plot_map_vertical(int *dump, int **map, int size_line, t_img img);
 int	screen_controller(int key, t_img *img);
 int	keys_arrow(int key, t_img *img);
 int	keys_wasd(int key, t_img *img);
+void	init_image_data(t_img *img);
+int	validation(int argc, char **argv);
+
 #endif

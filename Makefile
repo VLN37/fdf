@@ -2,7 +2,8 @@ LIBFT	= make -C ./libft all
 LINKS	= -I./libft -L./libft  -lft -I./minilibx -L./minilibx  -lmlx -lX11 -lXext
 SANIT	= -fsanitize=address -g3
 SRCS	= fdf_plot_map.c fdf_map_parser.c fdf.c fdf_plot_line.c \
-          fdf_keyboard_controller.c fdf_keys_arrow.c fdf_keys_wasd.c
+          fdf_keyboard_controller.c fdf_keys_arrow.c fdf_keys_wasd.c \
+          fdf_validation.c fdf_initialization.c
 
 fdf: makelibft
 	clang $(SRCS) $(LINKS) -lm && ./a.out ./maps/test_maps/elem-col.fdf

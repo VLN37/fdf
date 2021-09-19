@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 11:46:29 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/19 10:39:36 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/19 13:24:35 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	cleanup(t_img *img)
 	int	i;
 
 	i = 0;
-	while(img->map[i])
+	while (img->map[i])
 		free(img->map[i++]);
 	free(img->map);
 	mlx_destroy_image(img->mlx_ptr, img->win_img);
