@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 01:58:02 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/19 15:03:21 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/20 15:38:14 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100
+# define KEY_Q 113
+# define KEY_E 101
+# define KEY_K 107
+# define KEY_J 106
 # define OFFSETXX 0
 # define OFFSETYY -600
 
@@ -94,5 +98,7 @@ int		keys_wasd(int key, t_img *img);
 void	init_image_data(t_img *img, char **argv);
 int		get_color(t_coord *xy, t_img *img);
 int		validation(int argc, char **argv);
+void	set_scale(t_img *img, int **map);
+int		fdf_keys_height(int key, t_img *img);
 
 #endif

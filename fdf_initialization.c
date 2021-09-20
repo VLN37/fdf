@@ -6,14 +6,14 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 13:01:29 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/19 15:03:41 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/20 15:03:54 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "fdf.h"
 
-static void	set_scale(t_img *img, int **map)
+void	set_scale(t_img *img, int **map)
 {
 	int	i;
 	int	j;
@@ -43,7 +43,7 @@ void	init_image_data(t_img *img, char **argv)
 {
 	img->offsetx = 200;
 	img->offsety = 400;
-	img->cos1 = 1.0;
+	img->cos1 = 2.0;
 	img->sin1 = 2.0;
 	img->mlx_ptr = mlx_init();
 	img->map = parse_map(argv[1], img);

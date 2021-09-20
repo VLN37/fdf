@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 05:53:18 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/19 13:54:54 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/20 15:25:05 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static int	gradient(int color, t_coord *xy, t_img img)
 		return (0xFFFFFF);
 	if (xy->z0 == img.max_height && xy->z1 == img.max_height)
 		return (0x990099);
+	if (xy->z0 == img.max_height * -1 && xy->z1 == img.max_height * -1)
+		return (0xCCCCCC);
 	if (xy->z0 == xy->z1)
 		return (color);
 	if (xy->z0 < xy->z1)

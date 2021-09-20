@@ -13,7 +13,8 @@ SRCS	= fdf_plot_map.c \
 		  fdf_keys_wasd.c \
 		  fdf_validation.c \
 		  fdf_initialization.c \
-		  fdf_plot_color.c\
+		  fdf_plot_color.c \
+		  fdf_keys_height.c
 
 OBJ		= $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 14:24:06 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/19 13:38:34 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/20 14:51:18 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,12 @@ static int	key_w(t_img *img)
 
 static int	key_a(t_img *img)
 {
-	img->sin1 += 0.1;
+	if (img->cos1 > 15.0)
+		img->cos1 = -15.0;
+	else if (img ->cos1 > 5.0 || img->cos1 < -5.0)
+		img->cos1 +=0.5;
+	else
+		img->cos1 += 0.1;
 	mlx_destroy_image(img->mlx_ptr, img->win_img);
 	img->win_img = mlx_new_image(img->mlx_ptr, WIDTH, HEIGHT);
 	img->dump = (int *)mlx_get_data_addr(img->win_img, \
@@ -54,7 +59,12 @@ static int	key_s(t_img *img)
 
 static int	key_d(t_img *img)
 {
-	img->sin1 -= 0.1;
+	if (img->cos1 < -15.0)
+		img->cos1 = 15.0;
+	if (img->cos1 < -5.0 || img->cos1 > 5.0)
+		img->cos1 -= 1.0;
+	else
+		img->cos1 -= 0.1;
 	mlx_destroy_image(img->mlx_ptr, img->win_img);
 	img->win_img = mlx_new_image(img->mlx_ptr, WIDTH, HEIGHT);
 	img->dump = (int *)mlx_get_data_addr(img->win_img, \
