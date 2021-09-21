@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 11:46:29 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/20 22:38:36 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/20 22:41:40 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	screen_controller(int key, t_img *img)
 	if (key == KEY_W || key == KEY_A || key == KEY_S || key == KEY_D)
 		keys_wasd(key, img);
 	if (key == KEY_K || key == KEY_J)
-		fdf_keys_height(key, img);
+		keys_height(key, img);
 	if (key == KEY_Q)
 		key_q(img);
 	if (key == KEY_E)
