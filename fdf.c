@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 05:41:21 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/19 15:02:52 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/20 22:14:42 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int argc, char **argv)
 	plot_map_horizontal(img);
 	plot_map_vertical(img);
 	mlx_put_image_to_window(img.mlx_ptr, img.win_ptr, img.win_img, 0, 0);
+	print_commands(&img);
 	mlx_hook(img.win_ptr, 2, 1L << 0, &screen_controller, &img);
 	mlx_loop(img.mlx_ptr);
 	return (0);

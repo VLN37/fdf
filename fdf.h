@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 01:58:02 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/20 15:38:14 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/20 22:10:47 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_img
 	int		line_len;
 	int		scale;
 	int		max_height;
+	int		min_height;
 
 	int		offsetx;
 	int		offsety;
@@ -100,5 +101,6 @@ int		get_color(t_coord *xy, t_img *img);
 int		validation(int argc, char **argv);
 void	set_scale(t_img *img, int **map);
 int		fdf_keys_height(int key, t_img *img);
+void	print_commands(t_img *img);
 
 #endif

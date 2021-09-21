@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 14:24:06 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/20 14:51:18 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/20 22:14:10 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static int	key_w(t_img *img)
 	plot_map_horizontal(*img);
 	plot_map_vertical(*img);
 	mlx_put_image_to_window(img->mlx_ptr, img->win_ptr, img->win_img, 0, 0);
+	print_commands(img);
 	return (0);
 }
 
@@ -41,6 +42,7 @@ static int	key_a(t_img *img)
 	plot_map_horizontal(*img);
 	plot_map_vertical(*img);
 	mlx_put_image_to_window(img->mlx_ptr, img->win_ptr, img->win_img, 0, 0);
+	print_commands(img);
 	return (0);
 }
 
@@ -54,6 +56,7 @@ static int	key_s(t_img *img)
 	plot_map_horizontal(*img);
 	plot_map_vertical(*img);
 	mlx_put_image_to_window(img->mlx_ptr, img->win_ptr, img->win_img, 0, 0);
+	print_commands(img);
 	return (0);
 }
 
@@ -72,6 +75,7 @@ static int	key_d(t_img *img)
 	plot_map_horizontal(*img);
 	plot_map_vertical(*img);
 	mlx_put_image_to_window(img->mlx_ptr, img->win_ptr, img->win_img, 0, 0);
+	print_commands(img);
 	return (0);
 }
 

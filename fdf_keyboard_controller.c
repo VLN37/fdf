@@ -6,12 +6,29 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 11:46:29 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/20 15:42:29 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/20 22:15:19 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "mlx.h"
+
+void	print_commands(t_img *img)
+{
+
+	mlx_string_put(img->mlx_ptr, img->win_ptr, 0, 10, 0xFFFFFF, \
+	"Commands:");
+	mlx_string_put(img->mlx_ptr, img->win_ptr, 0, 20, 0xFFFFFF, \
+	"arrows  - location");
+	mlx_string_put(img->mlx_ptr, img->win_ptr, 0, 30, 0xFFFFFF, \
+	"w s     - zoom");
+	mlx_string_put(img->mlx_ptr, img->win_ptr, 0, 40, 0xFFFFFF, \
+	"a d     - stretch horizontally");
+	mlx_string_put(img->mlx_ptr, img->win_ptr, 0, 50, 0xFFFFFF, \
+	"q e     - stretch vertically");
+	mlx_string_put(img->mlx_ptr, img->win_ptr, 0, 60, 0xFFFFFF, \
+	"k j     - max height");
+}
 
 static int	key_q(t_img *img)
 {
@@ -30,6 +47,7 @@ static int	key_q(t_img *img)
 	plot_map_horizontal(*img);
 	plot_map_vertical(*img);
 	mlx_put_image_to_window(img->mlx_ptr, img->win_ptr, img->win_img, 0, 0);
+	print_commands(img);
 	return (0);
 }
 
@@ -50,6 +68,7 @@ static int	key_e(t_img *img)
 	plot_map_horizontal(*img);
 	plot_map_vertical(*img);
 	mlx_put_image_to_window(img->mlx_ptr, img->win_ptr, img->win_img, 0, 0);
+	print_commands(img);
 	return (0);
 }
 
