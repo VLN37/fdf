@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 11:46:29 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/20 22:15:19 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/20 22:38:36 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 void	print_commands(t_img *img)
 {
-
 	mlx_string_put(img->mlx_ptr, img->win_ptr, 0, 10, 0xFFFFFF, \
 	"Commands:");
 	mlx_string_put(img->mlx_ptr, img->win_ptr, 0, 20, 0xFFFFFF, \

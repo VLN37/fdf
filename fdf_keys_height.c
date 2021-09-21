@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 15:33:57 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/20 22:13:42 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/20 22:39:59 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static int	key_k(t_img *img)
 	return (0);
 }
 
-int	fdf_keys_height(int key, t_img *img)
+int	keys_height(int key, t_img *img)
 {
 	if (key == KEY_J)
 		key_j(img);

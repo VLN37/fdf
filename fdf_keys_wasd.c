@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 14:24:06 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/20 22:14:10 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/20 22:38:51 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	key_a(t_img *img)
 	if (img->cos1 > 15.0)
 		img->cos1 = -15.0;
 	else if (img ->cos1 > 5.0 || img->cos1 < -5.0)
-		img->cos1 +=0.5;
+		img->cos1 += 0.5;
 	else
 		img->cos1 += 0.1;
 	mlx_destroy_image(img->mlx_ptr, img->win_img);

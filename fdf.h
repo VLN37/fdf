@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 01:58:02 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/20 22:10:47 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/20 22:40:37 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,18 +89,18 @@ typedef struct s_coord
 	int		pixellen;
 }	t_coord;
 
+int		validation(int argc, char **argv);
+void	init_image_data(t_img *img, char **argv);
 int		**parse_map(char *file, t_img *img);
-void	bresenham(t_coord xy, t_img img);
 int		*plot_map_horizontal(t_img img);
 int		*plot_map_vertical(t_img img);
+void	set_scale(t_img *img, int **map);
+void	bresenham(t_coord xy, t_img img);
+int		get_color(t_coord *xy, t_img *img);
 int		screen_controller(int key, t_img *img);
 int		keys_arrow(int key, t_img *img);
 int		keys_wasd(int key, t_img *img);
-void	init_image_data(t_img *img, char **argv);
-int		get_color(t_coord *xy, t_img *img);
-int		validation(int argc, char **argv);
-void	set_scale(t_img *img, int **map);
-int		fdf_keys_height(int key, t_img *img);
+int		keys_height(int key, t_img *img);
 void	print_commands(t_img *img);
 
 #endif
