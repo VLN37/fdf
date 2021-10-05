@@ -35,6 +35,9 @@ fdfsanit:	makelibx makelibft $(OBJ)
 fdfvalg:	makelibx makelibft $(OBJ)
 	$(CC) $(SRCS) -o $(NAME) $(LINKS) $(LIBS) && valgrind ./$(NAME) 42.fdf
 
+parsertest:
+	clang fdf_map_parser_main.c fdf_map_parser.c -L ./libft -lft -I ./libft && ./a.out 42.fdf
+
 clean:
 	rm -f $(OBJ)
 	make clean -C ./libft
@@ -43,7 +46,6 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	make fclean -C ./libft
-	make fclean -C ./minilibx
 
 makelibft:
 	make all -C ./libft

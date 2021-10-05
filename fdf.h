@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 01:58:02 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/20 22:40:37 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/23 20:15:36 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
-# include <sys/types.h>
-# include <sys/stat.h>
 # include <fcntl.h>
 
 # define WIDTH 1800
