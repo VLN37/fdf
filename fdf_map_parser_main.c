@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 03:25:00 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/17 15:31:28 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/10/23 09:59:03 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ int	main(int argc, char **argv)
 	t_img	img;
 
 	if (argc != 2)
-		printf("expected usage: ./a.out (filename)\n");
+		ftex_minprintf("expected usage: ./a.out (filename)\n");
 	map = parse_map(argv[1], &img);
 	i = 0;
 	j = 0;
 	while (map[i])
 	{
 		while (j < img.line_len + 1)
-			printf("%3d", map[i][j++]);
+			ftex_minprintf("%3d", map[i][j++]);
 		i++;
 		j = 0;
-		printf("\n");
+		ftex_minprintf("\n");
 	}
 	while (i < img.lines)
 		free(map[i++]);

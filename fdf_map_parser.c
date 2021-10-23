@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 00:37:53 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/19 13:06:31 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/10/23 09:59:03 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	file_line_size(char *file)
 		str = get_next_line(fd);
 	}
 	close(fd);
-	printf("line len %d\n", i);
+	ftex_minprintf("line len %d\n", i);
 	return (i);
 }
 
@@ -68,7 +68,7 @@ static int	file_line_count(char *file)
 		res++;
 		free(str);
 	}
-	printf("line count %d\n", res);
+	ftex_minprintf("line count %d\n", res);
 	close(fd);
 	return (res);
 }

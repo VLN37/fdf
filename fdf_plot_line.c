@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 05:53:18 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/20 21:37:29 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/10/23 09:59:03 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	bresenham_len(t_coord xy, t_img img)
 	return (i);
 }
 
-// printf("pixellen %d, colorfactor %f, heightfactor %f\n"
+// ftex_minprintf("pixellen %d, colorfactor %f, heightfactor %f\n"
 // , xy.pixellen, xy.colorfactor, xy.heightfactor);
 void	bresenham(t_coord xy, t_img img)
 {
