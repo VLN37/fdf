@@ -21,10 +21,10 @@ OBJ		= $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME):	makelibft makelibx  $(OBJ)
-	$(CC) $(OBJ) -o $(NAME) $(LINKS) $(LIBS)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LINKS) $(LIBS)
 
 .c.o:
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -I./libft
+	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I./libft
 
 fdfrun:		makelibx makelibft $(OBJ)
 	$(CC) $(OBJ) -o $(NAME) $(LINKS) $(LIBS) && ./$(NAME) 42.fdf
