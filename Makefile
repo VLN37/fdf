@@ -1,11 +1,15 @@
 CC		= clang
 CCFLAGS	= -Wall -Wextra -Werror
 LIBFT	= make -C ./libft all
-LINKS	= -I./libft -L./libft  -lft -I./minilibx -L./minilibx
+LINKS	= -I./libft -L./libft  -lft -I./minilibx -L./minilibx -I./
 LIBS	= -lmlx -lX11 -lXext -lm
 NAME	= fdf
 SANIT	= -fsanitize=address -g3
-SRCS	= fdf_plot_map.c \
+
+HEADER	= fdf.h
+SRCDIR	= src
+OBJDIR	= obj
+SRCFILES= fdf_plot_map.c \
 		  fdf_map_parser.c \
 		  fdf.c fdf_plot_line.c \
 		  fdf_keyboard_controller.c \
@@ -16,15 +20,19 @@ SRCS	= fdf_plot_map.c \
 		  fdf_plot_color.c \
 		  fdf_keys_height.c
 
-OBJ		= $(SRCS:.c=.o)
+SRC		= $(addprefix $(SRCDIR)/, $(SRCFILES))
+OBJ		= $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
-all: $(NAME)
+all: mkdir $(NAME)
 
-$(NAME):	makelibft makelibx  $(OBJ)
+$(NAME):	makelibft makelibx  $(OBJ) $(HEADER)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LINKS) $(LIBS)
 
-.c.o:
-	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I./libft
+$(OBJDIR)/%.o:	$(SRCDIR)/%.c $(HEADER)
+			$(CC) $(CFLAGS) -c $< -o $@ -I./ -I./libft
+
+# .c.o:
+# 	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I./libft
 
 fdfrun:		makelibx makelibft $(OBJ)
 	$(CC) $(OBJ) -o $(NAME) $(LINKS) $(LIBS) && ./$(NAME) 42.fdf
@@ -33,13 +41,14 @@ fdfsanit:	makelibx makelibft $(OBJ)
 	$(CC) $(OBJ) -o $(NAME) $(SANIT) $(LINKS) $(LIBS) && ./$(NAME) 42.fdf
 
 fdfvalg:	makelibx makelibft $(OBJ)
-	$(CC) $(SRCS) -o $(NAME) $(LINKS) $(LIBS) && valgrind ./$(NAME) 42.fdf
+	$(CC) $(OBJ) -o $(NAME) $(LINKS) $(LIBS) && valgrind ./$(NAME) 42.fdf
 
 parsertest:
 	clang fdf_map_parser_main.c fdf_map_parser.c -L ./libft -lft -I ./libft && ./a.out 42.fdf
 
 clean:
 	rm -f $(OBJ)
+	rm -rf obj
 	make clean -C ./libft
 	make clean -C ./minilibx
 
@@ -52,5 +61,8 @@ makelibft:
 
 makelibx:
 	make all -C ./minilibx
+
+mkdir:
+	mkdir -p obj
 
 .PHONY:		all clean fclean re run fdf
