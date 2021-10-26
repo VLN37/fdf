@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 03:25:00 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/10/23 09:59:03 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/10/26 16:47:28 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	t_img	img;
 
 	if (argc != 2)
-		ftex_minprintf("expected usage: ./a.out (filename)\n");
+		ft_putstr_fd("expected usage: ./a.out (filename)\n", 2);
 	map = parse_map(argv[1], &img);
 	i = 0;
 	j = 0;

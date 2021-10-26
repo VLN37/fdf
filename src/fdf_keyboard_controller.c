@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 11:46:29 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/10/23 09:59:03 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/10/26 16:47:04 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ static void	cleanup(t_img *img)
 
 int	screen_controller(int key, t_img *img)
 {
-	ftex_minprintf("%d\n", key);
 	if (key == KEY_UP || key == KEY_RIGHT || key == KEY_LEFT || key == KEY_DOWN)
 		keys_arrow(key, img);
 	if (key == KEY_W || key == KEY_A || key == KEY_S || key == KEY_D)
