@@ -6,14 +6,14 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 13:47:37 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/19 13:54:32 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/11/01 01:11:09 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "fdf.h"
 
-static int	color_up(t_coord *xy, t_img *img)
+static int	color_up(t_coord *xy)
 {
 	int	color;
 
@@ -48,7 +48,7 @@ int	get_color(t_coord *xy, t_img *img)
 	int	color;
 
 	if (xy->z0 < xy->z1)
-		color = color_up(xy, img);
+		color = color_up(xy);
 	else if (xy->z0 > xy->z1)
 		color = color_down(xy, img);
 	else

@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 05:53:18 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/10/26 16:46:29 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/11/01 01:10:54 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static t_coord	init_bresenham(t_coord xy, t_img img)
 	return (xy);
 }
 
-int	bresenham_len(t_coord xy, t_img img)
+int	bresenham_len(t_coord xy)
 {
 	int	i;
 
@@ -90,7 +90,7 @@ void	bresenham(t_coord xy, t_img img)
 
 	xy = init_bresenham(xy, img);
 	xy.heightfactor = 255.00 / (float)img.max_height;
-	xy.pixellen = bresenham_len(xy, img);
+	xy.pixellen = bresenham_len(xy);
 	color = get_color(&xy, &img);
 	while (1)
 	{
