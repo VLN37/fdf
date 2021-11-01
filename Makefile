@@ -1,5 +1,5 @@
 CC		= clang
-CCFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror
 LIBFT	= make -C ./libft all
 LINKS	= -I./libft -L./libft  -lft -I./minilibx -L./minilibx -I./
 LIBS	= -lmlx -lX11 -lXext -lm
@@ -23,9 +23,9 @@ SRCFILES= fdf_plot_map.c \
 SRC		= $(addprefix $(SRCDIR)/, $(SRCFILES))
 OBJ		= $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
-all: mkdir $(NAME)
+all: $(NAME)
 
-$(NAME):	makelibft makelibx  $(OBJ) $(HEADER)
+$(NAME):	mkdir makelibft makelibx  $(OBJ) $(HEADER)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LINKS) $(LIBS)
 
 $(OBJDIR)/%.o:	$(SRCDIR)/%.c $(HEADER)
@@ -34,14 +34,17 @@ $(OBJDIR)/%.o:	$(SRCDIR)/%.c $(HEADER)
 # .c.o:
 # 	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I./libft
 
-fdfrun:		makelibx makelibft $(OBJ)
-	$(CC) $(OBJ) -o $(NAME) $(LINKS) $(LIBS) && ./$(NAME) 42.fdf
+fdfrun:		mkdir makelibx makelibft $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LINKS) $(LIBS)
+	./$(NAME) 42.fdf
 
-fdfsanit:	makelibx makelibft $(OBJ)
-	$(CC) $(OBJ) -o $(NAME) $(SANIT) $(LINKS) $(LIBS) && ./$(NAME) 42.fdf
+fdfsanit:	mkdir makelibx makelibft $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(SANIT) $(LINKS) $(LIBS)
+	./$(NAME) 42.fdf
 
-fdfvalg:	makelibx makelibft $(OBJ)
-	$(CC) $(OBJ) -o $(NAME) $(LINKS) $(LIBS) && valgrind ./$(NAME) 42.fdf
+fdfvalg:	mkdir makelibx makelibft $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LINKS) $(LIBS)
+	valgrind ./$(NAME) 42.fdf
 
 parsertest:
 	clang fdf_map_parser_main.c fdf_map_parser.c -L ./libft -lft -I ./libft && ./a.out 42.fdf
