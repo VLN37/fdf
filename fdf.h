@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 01:58:02 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/11/01 01:10:36 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/11/19 17:34:06 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FDF_H
 
 # include "libft.h"
-# include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>

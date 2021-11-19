@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 05:41:21 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/20 22:14:42 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/11/19 17:34:23 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	main(int argc, char **argv)
 {
 	t_img	img;
 
-	setbuf(stdout, NULL);
 	if (!validation(argc, argv))
 		return (1);
 	init_image_data(&img, argv);
