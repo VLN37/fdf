@@ -1,13 +1,12 @@
 LIBFT_PATH	= ./libft
-LIBFT		= $(LIBFT_PATH)/libft.addprefix
+LIBFT		= $(LIBFT_PATH)/libft.a
 
 MLX_PATH	= ./minilibx
 MLX			= $(MLX_PATH)/libmlx_Linux.a
 
 CC		= clang
 CFLAGS	= -Wall -Wextra -Werror
-LIBFT	= make -C ./libft all
-LINKS	= -I./ -I./libft
+LINKS	= -I./libft -L./libft -lft -I./minilibx -L./minilibx -lmlx_Linux
 LIBS	= -lX11 -lXext -lm
 NAME	= fdf
 SANIT	= -fsanitize=address -g3
@@ -31,8 +30,8 @@ OBJ		= $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
 all:	$(NAME)
 
-$(NAME):	$(OBJDIR) $(LIBFT) $(MLX) $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LINKS) $(LIBS) $(LIBFT) $(MLX) -o $(NAME)
+$(NAME):	$(LIBFT) $(MLX) $(OBJDIR) $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBS) $(LINKS)
 
 $(OBJDIR)/%.o:	$(SRCDIR)/%.c $(HEADER)
 		$(CC) $(CFLAGS) -c $< -o $@ -I./ -I./libft -I./minilibx
@@ -52,9 +51,6 @@ fdfvalg:	$(OBJDIR) $(MLX) $(LIBFT) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LINKS) $(LIBS)
 	valgrind ./$(NAME) 42.fdf
 
-parsertest:
-	clang fdf_map_parser_main.c fdf_map_parser.c -L ./libft -lft -I ./libft && ./a.out 42.fdf
-
 clean:
 	rm -f $(OBJ)
 	rm -rf obj
@@ -68,12 +64,12 @@ fclean: clean
 re: fclean all
 
 $(LIBFT):
-	make all -C $(LIBFT_PATH)
+	make all -C ./libft
 
 $(MLX):
-	make all -C $(MLX_PATH)
+	make all -C ./minilibx
 
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
 
-.PHONY:		all clean fclean re fdf
+.PHONY:		clean fclean re
