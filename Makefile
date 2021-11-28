@@ -1,8 +1,14 @@
+LIBFT_PATH	= ./libft
+LIBFT		= $(LIBFT_PATH)/libft.addprefix
+
+MLX_PATH	= ./minilibx
+MLX			= $(MLX_PATH)/libmlx_Linux.a
+
 CC		= clang
 CFLAGS	= -Wall -Wextra -Werror
 LIBFT	= make -C ./libft all
-LINKS	= -I./libft -L./libft  -lft -I./minilibx -L./minilibx -I./
-LIBS	= -lmlx -lX11 -lXext -lm
+LINKS	= -I./ -I./libft
+LIBS	= -lX11 -lXext -lm
 NAME	= fdf
 SANIT	= -fsanitize=address -g3
 
@@ -18,31 +24,31 @@ SRCFILES= fdf_plot_map.c \
 		  fdf_validation.c \
 		  fdf_initialization.c \
 		  fdf_plot_color.c \
-		  fdf_keys_height.c
+		  fdf_keys_height.c \
 
 SRC		= $(addprefix $(SRCDIR)/, $(SRCFILES))
 OBJ		= $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
-all: $(NAME)
+all:	$(NAME)
 
-$(NAME):	mkdir makelibft makelibx  $(OBJ) $(HEADER)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LINKS) $(LIBS)
+$(NAME):	$(OBJDIR) $(LIBFT) $(MLX) $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) $(LINKS) $(LIBS) $(LIBFT) $(MLX) -o $(NAME)
 
 $(OBJDIR)/%.o:	$(SRCDIR)/%.c $(HEADER)
-			$(CC) $(CFLAGS) -c $< -o $@ -I./ -I./libft
+		$(CC) $(CFLAGS) -c $< -o $@ -I./ -I./libft -I./minilibx
 
 # .c.o:
 # 	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I./libft
 
-fdfrun:		mkdir makelibx makelibft $(OBJ)
+fdfrun:		$(OBJDIR) $(MLX) $(LIBFT) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LINKS) $(LIBS)
 	./$(NAME) 42.fdf
 
-fdfsanit:	mkdir makelibx makelibft $(OBJ)
+fdfsanit:	$(OBJDIR) $(MLX) $(LIBFT) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(SANIT) $(LINKS) $(LIBS)
 	./$(NAME) 42.fdf
 
-fdfvalg:	mkdir makelibx makelibft $(OBJ)
+fdfvalg:	$(OBJDIR) $(MLX) $(LIBFT) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LINKS) $(LIBS)
 	valgrind ./$(NAME) 42.fdf
 
@@ -59,13 +65,15 @@ fclean: clean
 	rm -f $(NAME)
 	make fclean -C ./libft
 
-makelibft:
-	make all -C ./libft
+re: fclean all
 
-makelibx:
-	make all -C ./minilibx
+$(LIBFT):
+	make all -C $(LIBFT_PATH)
 
-mkdir:
-	mkdir -p obj
+$(MLX):
+	make all -C $(MLX_PATH)
 
-.PHONY:		all clean fclean re run fdf
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
+
+.PHONY:		all clean fclean re fdf
