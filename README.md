@@ -59,4 +59,6 @@ Other sample maps are provided in the maps folder.
 
 ## License
 
-This project is licensed under the BSD terms, to follow suit of [42's minilibx](https://github.com/42Paris/minilibx-linux), [available here](LICENSE)
+Minilibx is licensed under the BSD terms, [available here](https://github.com/42Paris/minilibx-linux/blob/master/LICENSE)
+
+This project is licensed under the BSD terms, [available here](LICENSE)
