@@ -39,17 +39,9 @@ $(OBJDIR)/%.o:	$(SRCDIR)/%.c $(HEADER)
 # .c.o:
 # 	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I./libft
 
-fdfrun:		$(OBJDIR) $(MLX) $(LIBFT) $(OBJ)
+run:		$(OBJDIR) $(MLX) $(LIBFT) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LINKS) $(LIBS)
 	./$(NAME) 42.fdf
-
-fdfsanit:	$(OBJDIR) $(MLX) $(LIBFT) $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(SANIT) $(LINKS) $(LIBS)
-	./$(NAME) 42.fdf
-
-fdfvalg:	$(OBJDIR) $(MLX) $(LIBFT) $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LINKS) $(LIBS)
-	valgrind ./$(NAME) 42.fdf
 
 clean:
 	rm -f $(OBJ)
